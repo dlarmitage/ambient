@@ -47,14 +47,14 @@ const products = [
     image: "/images/practiceperfect.webp",
   },
   {
-    id: 7,
+    id: 8,
     name: "QR Creator",
     description: "Generate high-quality QR codes for contacts & URLs — free, no sign-in.",
     link: "https://qr-creator.us",
     image: "/images/qr-creator.webp",
   },
   {
-    id: 8,
+    id: 7,
     name: "Explore Venao",
     description: "Discover culture, real-estate, and adventure in Playa Venao, Panama.",
     link: "https://www.venao.online",
