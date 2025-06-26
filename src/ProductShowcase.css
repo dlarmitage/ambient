@@ -107,7 +107,7 @@
 }
 
 .breadcrumb-link {
-  color: #52525b; /* neutral-600 */
+  color: inherit;
   text-decoration: none;
 }
 
