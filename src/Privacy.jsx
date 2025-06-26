@@ -1,9 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Privacy.css";
 
 const Privacy = () => (
   <main className="privacy-wrapper">
     <section className="privacy-content">
+      <nav className="privacy-breadcrumb">
+        <Link to="/" className="privacy-home-link">Home</Link>
+        <span className="privacy-separator">›</span>
+        <span className="privacy-current">Privacy Policy</span>
+      </nav>
       <h1>Privacy Policy</h1>
       <p>
         <strong>Last updated:</strong> {new Date().toLocaleDateString()}

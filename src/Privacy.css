@@ -1,11 +1,12 @@
 .privacy-wrapper {
-  min-height: 80vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: #f0fdfa;
-  padding: 2rem;
+  padding: 2rem 1rem;
 }
 
 .privacy-content {
@@ -15,6 +16,7 @@
   width: 100%;
   padding: 2.5rem 2rem;
   box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  margin: 2rem 0;
 }
 
 .privacy-content h1 {
@@ -40,4 +42,32 @@
 .privacy-content a {
   color: #0d9488;
   text-decoration: underline;
+}
+
+.privacy-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  color: #a1a1aa;
+}
+
+.privacy-home-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.privacy-home-link:hover {
+  text-decoration: underline;
+}
+
+.privacy-separator {
+  color: #d4d4d8;
+  opacity: 0.7;
+}
+
+.privacy-current {
+  color: #f0fdfa;
+  font-weight: 500;
 } 
