@@ -89,7 +89,7 @@ const ProductShowcase = () => {
             rel="noopener noreferrer"
           >
             <div className="card-media">
-              <img src={product.image} alt={product.name} loading="lazy" />
+              <img src={product.image} alt={product.name} />
             </div>
             <div className="card-content">
               <h2>{product.name}</h2>
