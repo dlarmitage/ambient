@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./ProductShowcase.css";
 
 const products = [
@@ -56,6 +57,11 @@ const products = [
 const ProductShowcase = () => {
   return (
     <main className="showcase-wrapper">
+      <nav className="breadcrumb">
+        <Link to="/" className="breadcrumb-link">Home</Link>
+        <span className="breadcrumb-separator">›</span>
+        <span className="breadcrumb-current">Products</span>
+      </nav>
       <header className="showcase-header">
         <h1>Ambient Product Showcase</h1>
         <p>
