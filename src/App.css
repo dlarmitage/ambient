@@ -6,7 +6,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Satoshi', 'Inter', Arial, Helvetica, sans-serif;}
+  font-family: 'Satoshi', 'Inter', Arial, Helvetica, sans-serif;
+  cursor: pointer;
+}
 
 .hero-video {
   position: absolute;
