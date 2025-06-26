@@ -88,10 +88,9 @@ const ProductShowcase = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div
-              className="card-media"
-              style={{ backgroundImage: `url(${product.image})` }}
-            />
+            <div className="card-media">
+              <img src={product.image} alt={product.name} loading="lazy" />
+            </div>
             <div className="card-content">
               <h2>{product.name}</h2>
               <p>{product.description}</p>

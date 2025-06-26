@@ -60,8 +60,17 @@
 
 .card-media {
   height: 180px;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000; /* fallback color so transparent images are visible */
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-content {
