@@ -52,6 +52,13 @@ const products = [
     link: "https://www.venao.online",
     image: "https://www.venao.online/hero.jpg",
   },
+  {
+    id: 8,
+    name: "PhotoLog",
+    description: "PhotoLog combines the best of travel documentation with AI-powered cultural intelligence, creating experiences no other app can match.",
+    link: "https://www.photolog.app",
+    image: "/images/phtolog.webp",
+  },
 ];
 
 const ProductShowcase = () => {
