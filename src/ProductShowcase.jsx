@@ -25,6 +25,13 @@ const products = [
     image: "/images/crush-the-interview.webp",
   },
   {
+    id: 8,
+    name: "PhotoLog",
+    description: "PhotoLog combines the best of travel documentation with AI-powered cultural intelligence, creating experiences no other app can match.",
+    link: "https://www.photolog.app",
+    image: "/images/phtolog.webp",
+  },
+  {
     id: 4,
     name: "Podcast Creator",
     description: "Turn articles & ideas into polished podcast scripts and audio in minutes with AI.",
@@ -52,13 +59,7 @@ const products = [
     link: "https://www.venao.online",
     image: "https://www.venao.online/hero.jpg",
   },
-  {
-    id: 8,
-    name: "PhotoLog",
-    description: "PhotoLog combines the best of travel documentation with AI-powered cultural intelligence, creating experiences no other app can match.",
-    link: "https://www.photolog.app",
-    image: "/images/phtolog.webp",
-  },
+
 ];
 
 const ProductShowcase = () => {
