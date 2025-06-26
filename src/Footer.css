@@ -1,0 +1,32 @@
+.site-footer {
+  width: 100%;
+  background: transparent;
+  color: #a1a1aa;
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 1.5rem 0 0.5rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.7;
+}
+
+.footer-link {
+  color: #a1a1aa;
+  text-decoration: underline dotted;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #0d9488;
+}
+
+.footer-separator {
+  opacity: 0.5;
+} 

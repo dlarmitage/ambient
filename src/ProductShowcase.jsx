@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ProductShowcase.css";
+import Footer from "./Footer";
 
 const products = [
   {
@@ -99,8 +100,10 @@ const ProductShowcase = () => {
           </a>
         ))}
       </section>
+      <Footer />
     </main>
   );
 };
+
 
 export default ProductShowcase; 
