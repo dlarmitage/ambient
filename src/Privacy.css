@@ -7,6 +7,7 @@
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: #f0fdfa;
   padding: 2rem 1rem;
+  font-family: 'Satoshi', 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .privacy-content {
