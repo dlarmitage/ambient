@@ -49,8 +49,8 @@ const products = [
   {
     id: 8,
     name: "QR Creator",
-    description: "Generate high-quality QR codes for contacts & URLs — free, no sign-in.",
-    link: "https://qr-creator.us",
+    description: "Generate high-quality QR codes for URLs, contacts, and more — free, no sign-in.",
+    link: "https://theQR.guru",
     image: "/images/qr-creator.webp",
   },
   {
@@ -74,7 +74,7 @@ const ProductShowcase = () => {
       <header className="showcase-header">
         <h1>Ambient Product Showcase</h1>
         <p>
-          Explore our growing collection of web apps—all designed
+          Explore my growing collection of web apps—all designed
           to feel <em>indistinguishable from magic</em>.
         </p>
       </header>
