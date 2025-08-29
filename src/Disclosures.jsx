@@ -9,7 +9,7 @@ const Disclosures = () => {
     script.type = 'module';
     script.innerHTML = `
       import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0/dist/web.js';
-      Typebot.initStandard({});
+      Typebot.initStandard({ typebot: "my-typebot-bkxrd2c" });
     `;
     document.head.appendChild(script);
 
