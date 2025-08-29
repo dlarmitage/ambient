@@ -1,7 +1,7 @@
 /* Disclosures Page Styles */
 .disclosures-wrapper {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #0A5CAD;
   display: flex;
   flex-direction: column;
 }
@@ -46,13 +46,12 @@
 
 /* Typebot Container */
 .typebot-container {
-  flex: 1;
   width: 100%;
   background: white;
   border-radius: 12px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  min-height: calc(100vh - 8rem); /* Account for padding and breadcrumb */
+  height: 85vh;
 }
 
 /* Responsive Design */
@@ -64,7 +63,7 @@
   .typebot-container {
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    min-height: calc(100vh - 6rem);
+    height: 80vh;
   }
 }
 
@@ -79,7 +78,7 @@
   }
   
   .typebot-container {
-    min-height: calc(100vh - 4rem);
+    height: 75vh;
   }
 }
 

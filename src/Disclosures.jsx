@@ -28,7 +28,7 @@ const Disclosures = () => {
           <span className="disclosures-current">Disclosures</span>
         </nav>
         <div className="typebot-container">
-          <typebot-standard style={{height: '100vh'}}></typebot-standard>
+          <typebot-standard style={{height: '85vh'}}></typebot-standard>
         </div>
       </section>
     </main>
