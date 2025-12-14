@@ -18,19 +18,14 @@
 
 .showcase-header {
   max-width: 900px;
-  margin: 0 auto 4rem;
+  margin: 0 auto 3rem;
   text-align: center;
 }
 
 .showcase-header h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 200;
-}
-
-.showcase-header p {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  opacity: 0.9;
+  margin-bottom: 0.5rem;
 }
 
 .product-grid {
@@ -64,7 +59,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #000; /* fallback color so transparent images are visible */
+  background: #000;
+  /* fallback color so transparent images are visible */
 }
 
 .card-media img {
@@ -109,7 +105,8 @@
 .breadcrumb {
   font-size: 0.9rem;
   margin-bottom: 2rem;
-  color: #a1a1aa; /* neutral-400 */
+  color: #a1a1aa;
+  /* neutral-400 */
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -125,5 +122,6 @@
 }
 
 .breadcrumb-separator {
-  color: #d4d4d8; /* neutral-300 */
-} 
+  color: #d4d4d8;
+  /* neutral-300 */
+}

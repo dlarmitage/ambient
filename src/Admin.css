@@ -1,0 +1,415 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap");
+
+.admin-container,
+.admin-dashboard,
+.ReactModal__Content {
+    font-family: 'Inter', sans-serif;
+    color: #f1f5f9;
+    /* Slate 100 */
+}
+
+.admin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0f172a;
+}
+
+.admin-card {
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 100%;
+    /* max-width removed to fit grid */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    /* Fix width overflow */
+    position: relative;
+    /* Ensure it stays in context */
+}
+
+/* Specific overrides for Product Cards in Admin Grid */
+.product-card.admin-card {
+    background-color: #1e293b !important;
+    color: #f1f5f9 !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card.admin-card .card-content p {
+    color: #cbd5e1 !important;
+    /* Ensure description is readable */
+}
+
+.product-card.admin-card .card-content h2 {
+    color: #f1f5f9 !important;
+    /* Ensure title is white */
+}
+
+.admin-card h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 200;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #94a3b8;
+    /* Slate 400 */
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.admin-form input,
+.admin-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #1e293b;
+    /* Slightly lighter than bg */
+    color: white;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.form-group input:focus,
+.admin-form textarea:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    /* Sky blue */
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+.admin-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: #0d9488;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.admin-btn:hover {
+    background: #14b8a6;
+}
+
+.error-message {
+    color: #f87171;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Dashboard */
+.admin-dashboard {
+    min-height: 100vh;
+    background: #0f172a;
+    color: white;
+    padding: 2rem;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #334155;
+    padding-bottom: 1rem;
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #475569;
+    color: #cbd5e1;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 900px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+.admin-app-list {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-app-item {
+    background: #1e293b;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.2s;
+}
+
+.admin-app-item.editing {
+    background: #334155;
+    border: 1px solid #0d9488;
+}
+
+.reorder-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.reorder-controls button {
+    background: #334155;
+    border: none;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.reorder-controls button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.admin-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.admin-app-info {
+    flex: 1;
+}
+
+.admin-app-info h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+}
+
+.admin-app-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.edit-btn {
+    background: #0ea5e9;
+    /* Sky blue */
+    color: white;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Form Styles */
+.input-with-action {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.input-with-action input {
+    margin-bottom: 0;
+    /* Override generic input margin */
+    flex: 1;
+}
+
+.action-btn {
+    padding: 0 1rem;
+    background: #475569;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.cancel-btn {
+    flex: 1;
+    padding: 0.75rem;
+    background: #475569;
+    color: white;
+    border: none;
+}
+
+/* Modal Custom Styles */
+.ReactModal__Overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    z-index: 1000;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.ReactModal__Content {
+    background: #0f172a !important;
+    border: 1px solid #334155 !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    inset: auto !important;
+    /* Override default inset */
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #fff;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.modal-body {
+    display: flex;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.modal-form-section {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    border-right: 1px solid #334155;
+}
+
+.modal-preview-section {
+    flex: 1;
+    padding: 2rem;
+    background: #020617;
+    /* Darker bg for contrast */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.preview-label {
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #334155;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    background: #1e293b;
+}
+
+/* Floating Add Button for Grid */
+.add-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #0ea5e9;
+    color: white;
+    border: none;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    transition: transform 0.2s;
+}
+
+.add-fab:hover {
+    transform: scale(1.1);
+}
+
+.card-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.card-delete-btn:hover {
+    background: #ef4444;
+    color: white;
+}

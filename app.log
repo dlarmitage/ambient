@@ -1,0 +1,346 @@
+
+> ambient-hero-site@1.0.0 start
+> concurrently "npm run server" "npm run client"
+
+[1] 
+[1] > ambient-hero-site@1.0.0 client
+[1] > react-scripts start
+[1] 
+[0] 
+[0] > ambient-hero-site@1.0.0 server
+[0] > node server.js
+[0] 
+[0] [dotenv@17.2.3] injecting env (1) from .env -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+[0] Server running on port 3001
+[0] Connected to database at: 2025-12-13T21:51:43.374Z
+[1] Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+[1]   npx update-browserslist-db@latest
+[1]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[1] (node:16903) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[1] (Use `node --trace-deprecation ...` to show where the warning was created)
+[1] (node:16903) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+[1] Starting the development server...
+[1] 
+[1] Compiled successfully!
+[1] 
+[1] You can now view ambient-hero-site in the browser.
+[1] 
+[1]   Local:            http://localhost:3000
+[1]   On Your Network:  http://192.168.10.166:3000
+[1] 
+[1] Note that the development build is not optimized.
+[1] To create a production build, use npm run build.
+[1] 
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[0] npm run server exited with code SIGTERM
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] [eslint] 
+[1] src/AdminDashboard.jsx
+[1] Syntax error: Missing semicolon. (50:31) (50:31)
+[1] ERROR in ./src/AdminDashboard.jsx
+[1] Module build failed (from ./node_modules/babel-loader/lib/index.js):
+[1] SyntaxError: /Users/darmitage/GitHub/ambient/src/AdminDashboard.jsx: Missing semicolon. (50:31)
+[1] 
+[1]   48 |     if (!window.confirm('Are you sure you want to delete this app?')) return;
+[1]   49 |     try {
+[1] > 50 |       const res = await fetch(`http://localhost:3001/api/apps/${id}`, {
+[1]      |                                ^
+[1]   51 | method: 'DELETE',
+[1]   52 |     headers: {
+[1]   53 |     'Authorization': `Bearer ${token}`
+[1]     at constructor (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:360:19)
+[1]     at FlowParserMixin.raise (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3338:19)
+[1]     at FlowParserMixin.semicolon (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3664:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12949:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5175:18)
+[1]     at FlowParserMixin.parseStatementContent (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12563:19)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12432:17)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5153:24)
+[1]     at FlowParserMixin.parseModuleItem (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12409:17)
+[1]     at FlowParserMixin.parseBlockOrModuleBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12980:36)
+[1]     at FlowParserMixin.parseBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12973:10)
+[1]     at FlowParserMixin.parseProgram (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12306:10)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12296:25)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5922:28)
+[1]     at FlowParserMixin.parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14152:10)
+[1]     at parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14186:38)
+[1]     at parser (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/parser/index.js:41:34)
+[1]     at parser.next (<anonymous>)
+[1]     at normalizeFile (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+[1]     at normalizeFile.next (<anonymous>)
+[1]     at run (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/index.js:22:50)
+[1]     at run.next (<anonymous>)
+[1]     at transform (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transform.js:22:33)
+[1]     at transform.next (<anonymous>)
+[1]     at step (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:261:32)
+[1]     at /Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:273:13
+[1]     at async.call.result.err.err (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:223:11)
+[1] 
+[1] ERROR in [eslint] 
+[1] src/AdminDashboard.jsx
+[1]   Line 50:31:  Parsing error: Missing semicolon. (50:31)
+[1] 
+[1] webpack compiled with 2 errors
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] [eslint] 
+[1] src/AdminDashboard.jsx
+[1] Syntax error: Missing semicolon. (50:31) (50:31)
+[1] ERROR in ./src/AdminDashboard.jsx
+[1] Module build failed (from ./node_modules/babel-loader/lib/index.js):
+[1] SyntaxError: /Users/darmitage/GitHub/ambient/src/AdminDashboard.jsx: Missing semicolon. (50:31)
+[1] 
+[1]   48 |     if (!window.confirm('Are you sure you want to delete this app?')) return;
+[1]   49 |     try {
+[1] > 50 |       const res = await fetch(`http://localhost:3001/api/apps/${id}`, {
+[1]      |                                ^
+[1]   51 | method: 'DELETE',
+[1]   52 |     headers: {
+[1]   53 |     'Authorization': `Bearer ${token}`
+[1]     at constructor (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:360:19)
+[1]     at FlowParserMixin.raise (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3338:19)
+[1]     at FlowParserMixin.semicolon (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3664:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12949:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5175:18)
+[1]     at FlowParserMixin.parseStatementContent (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12563:19)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12432:17)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5153:24)
+[1]     at FlowParserMixin.parseModuleItem (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12409:17)
+[1]     at FlowParserMixin.parseBlockOrModuleBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12980:36)
+[1]     at FlowParserMixin.parseBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12973:10)
+[1]     at FlowParserMixin.parseProgram (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12306:10)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12296:25)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5922:28)
+[1]     at FlowParserMixin.parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14152:10)
+[1]     at parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14186:38)
+[1]     at parser (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/parser/index.js:41:34)
+[1]     at parser.next (<anonymous>)
+[1]     at normalizeFile (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+[1]     at normalizeFile.next (<anonymous>)
+[1]     at run (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/index.js:22:50)
+[1]     at run.next (<anonymous>)
+[1]     at transform (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transform.js:22:33)
+[1]     at transform.next (<anonymous>)
+[1]     at step (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:261:32)
+[1]     at /Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:273:13
+[1]     at async.call.result.err.err (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:223:11)
+[1] 
+[1] ERROR in [eslint] 
+[1] src/AdminDashboard.jsx
+[1]   Line 50:31:  Parsing error: Missing semicolon. (50:31)
+[1] 
+[1] webpack compiled with 2 errors
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] [eslint] 
+[1] src/AdminDashboard.jsx
+[1] Syntax error: Missing semicolon. (50:31) (50:31)
+[1] ERROR in ./src/AdminDashboard.jsx
+[1] Module build failed (from ./node_modules/babel-loader/lib/index.js):
+[1] SyntaxError: /Users/darmitage/GitHub/ambient/src/AdminDashboard.jsx: Missing semicolon. (50:31)
+[1] 
+[1]   48 |     if (!window.confirm('Are you sure you want to delete this app?')) return;
+[1]   49 |     try {
+[1] > 50 |       const res = await fetch(`http://localhost:3001/api/apps/${id}`, {
+[1]      |                                ^
+[1]   51 | method: 'DELETE',
+[1]   52 |     headers: {
+[1]   53 |     'Authorization': `Bearer ${token}`
+[1]     at constructor (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:360:19)
+[1]     at FlowParserMixin.raise (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3338:19)
+[1]     at FlowParserMixin.semicolon (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3664:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12949:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5175:18)
+[1]     at FlowParserMixin.parseStatementContent (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12563:19)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12432:17)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5153:24)
+[1]     at FlowParserMixin.parseModuleItem (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12409:17)
+[1]     at FlowParserMixin.parseBlockOrModuleBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12980:36)
+[1]     at FlowParserMixin.parseBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12973:10)
+[1]     at FlowParserMixin.parseProgram (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12306:10)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12296:25)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5922:28)
+[1]     at FlowParserMixin.parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14152:10)
+[1]     at parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14186:38)
+[1]     at parser (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/parser/index.js:41:34)
+[1]     at parser.next (<anonymous>)
+[1]     at normalizeFile (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+[1]     at normalizeFile.next (<anonymous>)
+[1]     at run (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/index.js:22:50)
+[1]     at run.next (<anonymous>)
+[1]     at transform (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transform.js:22:33)
+[1]     at transform.next (<anonymous>)
+[1]     at step (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:261:32)
+[1]     at /Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:273:13
+[1]     at async.call.result.err.err (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:223:11)
+[1] 
+[1] ERROR in [eslint] 
+[1] src/AdminDashboard.jsx
+[1]   Line 50:31:  Parsing error: Missing semicolon. (50:31)
+[1] 
+[1] webpack compiled with 2 errors
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] [eslint] 
+[1] src/AdminDashboard.jsx
+[1] Syntax error: Missing semicolon. (50:31) (50:31)
+[1] ERROR in ./src/AdminDashboard.jsx
+[1] Module build failed (from ./node_modules/babel-loader/lib/index.js):
+[1] SyntaxError: /Users/darmitage/GitHub/ambient/src/AdminDashboard.jsx: Missing semicolon. (50:31)
+[1] 
+[1]   48 |     if (!window.confirm('Are you sure you want to delete this app?')) return;
+[1]   49 |     try {
+[1] > 50 |       const res = await fetch(`http://localhost:3001/api/apps/${id}`, {
+[1]      |                                ^
+[1]   51 | method: 'DELETE',
+[1]   52 |     headers: {
+[1]   53 |     'Authorization': `Bearer ${token}`
+[1]     at constructor (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:360:19)
+[1]     at FlowParserMixin.raise (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3338:19)
+[1]     at FlowParserMixin.semicolon (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:3664:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12949:10)
+[1]     at FlowParserMixin.parseExpressionStatement (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5175:18)
+[1]     at FlowParserMixin.parseStatementContent (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12563:19)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12432:17)
+[1]     at FlowParserMixin.parseStatementLike (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5153:24)
+[1]     at FlowParserMixin.parseModuleItem (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12409:17)
+[1]     at FlowParserMixin.parseBlockOrModuleBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12980:36)
+[1]     at FlowParserMixin.parseBlockBody (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12973:10)
+[1]     at FlowParserMixin.parseProgram (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12306:10)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:12296:25)
+[1]     at FlowParserMixin.parseTopLevel (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:5922:28)
+[1]     at FlowParserMixin.parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14152:10)
+[1]     at parse (/Users/darmitage/GitHub/ambient/node_modules/@babel/parser/lib/index.js:14186:38)
+[1]     at parser (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/parser/index.js:41:34)
+[1]     at parser.next (<anonymous>)
+[1]     at normalizeFile (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+[1]     at normalizeFile.next (<anonymous>)
+[1]     at run (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transformation/index.js:22:50)
+[1]     at run.next (<anonymous>)
+[1]     at transform (/Users/darmitage/GitHub/ambient/node_modules/@babel/core/lib/transform.js:22:33)
+[1]     at transform.next (<anonymous>)
+[1]     at step (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:261:32)
+[1]     at /Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:273:13
+[1]     at async.call.result.err.err (/Users/darmitage/GitHub/ambient/node_modules/gensync/index.js:223:11)
+[1] 
+[1] ERROR in [eslint] 
+[1] src/AdminDashboard.jsx
+[1]   Line 50:31:  Parsing error: Missing semicolon. (50:31)
+[1] 
+[1] webpack compiled with 2 errors
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Compiled successfully!
+[1] webpack compiled successfully
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] ERROR in ./src/ProductShowcase.jsx 6:0-41
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] 
+[1] webpack compiled with 1 error
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] ERROR in ./src/ProductShowcase.jsx 6:0-41
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] 
+[1] webpack compiled with 1 error
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] Syntax error: /Users/darmitage/GitHub/ambient/src/Admin.css Unclosed block (229:1)
+[1]   227 | }
+[1]   228 | 
+[1] > 229 | .cancel-btn {
+[1]       | ^
+[1]   230 |     flex: 1;
+[1]   231 |     padding: 0.75rem;
+[1] ERROR in ./src/ProductShowcase.jsx 6:0-41
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] 
+[1] ERROR in ./src/Admin.css (./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].oneOf[5].use[2]!./node_modules/source-map-loader/dist/cjs.js!./src/Admin.css)
+[1] Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):
+[1] SyntaxError
+[1] 
+[1] (229:1) /Users/darmitage/GitHub/ambient/src/Admin.css Unclosed block
+[1] 
+[1]   227 | }
+[1]   228 | 
+[1] > 229 | .cancel-btn {
+[1]       | ^
+[1]   230 |     flex: 1;
+[1]   231 |     padding: 0.75rem;
+[1] 
+[1] webpack compiled with 2 errors
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] ERROR in ./src/ProductShowcase.jsx 6:0-41
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] 
+[1] webpack compiled with 1 error
+[1] Compiling...
+[1] Failed to compile.
+[1] 
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] ERROR in ./src/ProductShowcase.jsx 6:0-41
+[1] Module not found: Error: Can't resolve 'react-router-dom/Link' in '/Users/darmitage/GitHub/ambient/src'
+[1] 
+[1] webpack compiled with 1 error
+[1] npm run client exited with code SIGTERM

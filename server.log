@@ -1,0 +1,7 @@
+
+> ambient-hero-site@1.0.0 server
+> node server.js
+
+[dotenv@17.2.3] injecting env (1) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+Server running on port 3001
+Connected to database at: 2025-12-13T22:56:11.635Z

@@ -2,68 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./ProductShowcase.css";
 import Footer from "./Footer";
-
-const products = [
-  {
-    id: 1,
-    name: "News Check",
-    description: "Instantly spot bias & misinformation with AI-driven article analysis and credibility scores.",
-    link: "https://news-check.org",
-    image: "/images/news-check.webp",
-  },
-  {
-    id: 2,
-    name: "Ask Alice",
-    description: "AI-powered clinical supervision & role-play assistant for mental-health professionals.",
-    link: "https://askalice.app",
-    image: "/images/askalice.webp",
-  },
-  {
-    id: 3,
-    name: "Crush the Interview",
-    description: "AI interview coach offering mock sessions, feedback & confidence boosts before your big day.",
-    link: "https://crush-the-interview.com",
-    image: "/images/crush-the-interview.webp",
-  },
-  {
-    id: 4,
-    name: "PhotoLog",
-    description: "PhotoLog combines the best of travel documentation with AI-powered cultural intelligence, creating experiences no other app can match.",
-    link: "https://www.photolog.app",
-    image: "/images/photolog.webp",
-  },
-  {
-    id: 5,
-    name: "Podcast Creator",
-    description: "Turn articles & ideas into polished podcast scripts and audio in minutes with AI.",
-    link: "https://podcast-creator.com",
-    image: "/images/podcast-creator.webp",
-  },
-  {
-    id: 6,
-    name: "PracticePerfect",
-    description: "Track and gamify your daily practice sessions to hit skill-building goals faster.",
-    link: "https://practiceperfect.online",
-    image: "/images/practiceperfect.webp",
-  },
-  {
-    id: 8,
-    name: "QR Creator",
-    description: "Generate high-quality QR codes for URLs, contacts, and more — free, no sign-in.",
-    link: "https://theQR.guru",
-    image: "/images/qr-creator.webp",
-  },
-  {
-    id: 7,
-    name: "Explore Venao",
-    description: "Discover culture, real-estate, and adventure in Playa Venao, Panama.",
-    link: "https://www.venao.online",
-    image: "/images/venao.webp",
-  },
-
-];
+import ProductCard from "./components/ProductCard";
 
 const ProductShowcase = () => {
+  const [products, setProducts] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    fetch('http://localhost:3001/api/apps')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then(data => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to fetch apps:", err);
+        setError("Failed to load apps. Please ensure the backend server is running.");
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <main className="showcase-wrapper">
       <nav className="breadcrumb">
@@ -71,32 +35,16 @@ const ProductShowcase = () => {
         <span className="breadcrumb-separator">›</span>
         <span className="breadcrumb-current">Products</span>
       </nav>
+
       <header className="showcase-header">
-        <h1>Ambient Product Showcase</h1>
-        <p>
-          Explore my growing collection of web apps—all designed
-          to feel <em>indistinguishable from magic</em>.
-        </p>
+        <h1>Ambient Products</h1>
       </header>
 
       <section className="product-grid">
-        {products.map((product) => (
-          <a
-            href={product.link}
-            className="product-card"
-            key={product.id}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="card-media">
-              <img src={product.image} alt={product.name} />
-            </div>
-            <div className="card-content">
-              <h2>{product.name}</h2>
-              <p>{product.description}</p>
-              <span className="card-cta">Open ↗</span>
-            </div>
-          </a>
+        {loading && <p>Loading apps...</p>}
+        {error && <p className="error-message">{error}</p>}
+        {!loading && !error && products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </section>
       <Footer />

@@ -1,65 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap");
+
 .hero-container {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Satoshi', 'Inter', Arial, Helvetica, sans-serif;
   cursor: pointer;
+  background: black;
+  /* Fallback */
 }
 
-.hero-video {
+.hero-background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
   z-index: 1;
-  background: #000;
 }
 
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  position: relative;
   z-index: 2;
+  /* Ensure text is above 3D canvas */
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  background: rgba(0,0,0,0.25);
+  color: white;
+  pointer-events: none;
+  /* Let clicks pass through to container */
+  background: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
   text-align: center;
   padding: 2rem;
 }
 
 .hero-title {
+  font-family: 'Inter', sans-serif;
   font-size: clamp(2.5rem, 7vw, 5rem);
   font-weight: 200;
   margin: 0 0 1rem 0;
-  letter-spacing: 0.05em;
-  text-shadow: 0 4px 32px rgba(0,0,0,0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 32px rgba(0, 0, 0, 0.7);
 }
 
 .hero-subheading {
+  font-family: 'Inter', sans-serif;
   font-size: clamp(1.2rem, 3vw, 2rem);
-  font-weight: 200;
+  font-weight: 400;
+  color: #a1a1aa;
+  /* Light grey */
   margin: 0;
-  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 600px) {
   .hero-title {
     font-size: 2rem;
+    /* Adjusted for mobile */
   }
+
   .hero-subheading {
     font-size: 1rem;
+    /* Adjusted for mobile */
   }
+
   .hero-overlay {
     padding: 1rem;
   }
