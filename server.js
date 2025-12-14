@@ -201,6 +201,12 @@ app.delete('/api/apps/:id', authenticateToken, async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+// Export for Vercel
+module.exports = app;
+
+// Only listen if run directly (local dev)
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
