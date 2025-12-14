@@ -52,7 +52,7 @@ const AdminDashboard = ({ token, onLogout }) => {
 
     const fetchApps = async () => {
         try {
-            const res = await fetch('http://localhost:3001/api/apps');
+            const res = await fetch('/api/apps');
             const data = await res.json();
             setApps(data);
         } catch (err) {
@@ -82,7 +82,7 @@ const AdminDashboard = ({ token, onLogout }) => {
             }));
 
             try {
-                await fetch('http://localhost:3001/api/apps/reorder', {
+                await fetch('/api/apps/reorder', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ const AdminDashboard = ({ token, onLogout }) => {
         if (!formData.link) return alert("Please enter a Link URL first.");
         setFetchingOg(true);
         try {
-            const res = await fetch(`http://localhost:3001/api/fetch-og?url=${encodeURIComponent(formData.link)}`);
+            const res = await fetch(`/api/fetch-og?url=${encodeURIComponent(formData.link)}`);
             const data = await res.json();
             if (data.image) {
                 setFormData(prev => ({ ...prev, image_url: data.image }));
@@ -141,8 +141,8 @@ const AdminDashboard = ({ token, onLogout }) => {
     const handleSave = async (e) => {
         e.preventDefault();
         const url = editingId
-            ? `http://localhost:3001/api/apps/${editingId}`
-            : 'http://localhost:3001/api/apps';
+            ? `/api/apps/${editingId}`
+            : '/api/apps';
 
         const method = editingId ? 'PUT' : 'POST';
 
@@ -170,7 +170,7 @@ const AdminDashboard = ({ token, onLogout }) => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to delete this app?')) return;
         try {
-            const res = await fetch(`http://localhost:3001/api/apps/${id}`, {
+            const res = await fetch(`/api/apps/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

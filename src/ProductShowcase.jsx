@@ -10,7 +10,7 @@ const ProductShowcase = () => {
   const [error, setError] = React.useState(null);
 
   React.useEffect(() => {
-    fetch('http://localhost:3001/api/apps')
+    fetch('/api/apps')
       .then(res => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
