@@ -1,13 +1,20 @@
 import React from 'react';
 import '../ProductShowcase.css';
 
+// Ensure URL has a protocol prefix
+const ensureProtocol = (url) => {
+    if (!url) return url;
+    if (/^https?:\/\//i.test(url)) return url;
+    return 'https://' + url;
+};
+
 const ProductCard = ({ product, isAdmin, onDelete, onClick }) => {
     const Wrapper = isAdmin ? 'div' : 'a';
     const props = isAdmin ? {
         className: 'product-card admin-card', // Added admin-card class for specific overrides
         onClick: onClick
     } : {
-        href: product.link,
+        href: ensureProtocol(product.link),
         className: 'product-card',
         target: '_blank',
         rel: 'noopener noreferrer'

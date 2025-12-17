@@ -150,9 +150,17 @@ app.put('/api/apps/reorder', authenticateToken, async (req, res) => {
   }
 });
 
+// Helper to ensure URL has protocol
+const ensureProtocol = (url) => {
+  if (!url) return url;
+  if (/^https?:\/\//i.test(url)) return url;
+  return 'https://' + url;
+};
+
 // Protected CRUD Routes
 app.post('/api/apps', authenticateToken, async (req, res) => {
-  const { name, description, link, image_url } = req.body;
+  const { name, description, image_url } = req.body;
+  const link = ensureProtocol(req.body.link);
   try {
     // Get max sort order
     const maxOrderRes = await pool.query('SELECT MAX(sort_order) as max_order FROM apps');
@@ -171,7 +179,8 @@ app.post('/api/apps', authenticateToken, async (req, res) => {
 
 app.put('/api/apps/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
-  const { name, description, link, image_url } = req.body;
+  const { name, description, image_url } = req.body;
+  const link = ensureProtocol(req.body.link);
   try {
     const result = await pool.query(
       'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url) WHERE id = $5 RETURNING *',
