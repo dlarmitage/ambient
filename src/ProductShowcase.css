@@ -90,7 +90,7 @@
 }
 
 .card-cta {
-  align-self: flex-start;
+  align-self: flex-end;
   font-weight: 600;
   color: var(--brand-primary);
 }
