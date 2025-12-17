@@ -28,7 +28,7 @@ const ProductCard = ({ product, isAdmin, onDelete, onClick }) => {
             <div className="card-content">
                 <h2>{product.name}</h2>
                 <p>{product.description}</p>
-                <span className="card-cta">{isAdmin ? 'Edit' : 'Open ↗'}</span>
+                <span className="card-cta">{isAdmin ? 'Edit' : 'learn more'}</span>
             </div>
             {isAdmin && onDelete && (
                 <button
