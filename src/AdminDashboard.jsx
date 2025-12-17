@@ -15,10 +15,10 @@ import {
     sortableKeyboardCoordinates,
     rectSortingStrategy,
 } from '@dnd-kit/sortable';
-import SortableProductCard from './components/SortableProductCard';
-import ProductCard from './components/ProductCard';
+import SortableProjectCard from './components/SortableProjectCard';
+import ProjectCard from './components/ProjectCard';
 import './Admin.css';
-import './ProductShowcase.css';
+import './ProjectShowcase.css';
 
 Modal.setAppElement('#root');
 
@@ -199,15 +199,15 @@ const AdminDashboard = ({ token, onLogout }) => {
                 onDragStart={handleDragStart}
                 onDragEnd={handleDragEnd}
             >
-                <div className="product-grid">
+                <div className="project-grid">
                     <SortableContext
                         items={apps.map(a => a.id)}
                         strategy={rectSortingStrategy}
                     >
                         {apps.map(app => (
-                            <SortableProductCard
+                            <SortableProjectCard
                                 key={app.id}
-                                product={app}
+                                project={app}
                                 onEdit={openEditModal}
                                 onDelete={handleDelete}
                             />
@@ -218,7 +218,7 @@ const AdminDashboard = ({ token, onLogout }) => {
                 <DragOverlay>
                     {activeApp ? (
                         <div style={{ transform: 'scale(1.05)', cursor: 'grabbing' }}>
-                            <ProductCard product={activeApp} isAdmin={true} />
+                            <ProjectCard project={activeApp} isAdmin={true} />
                         </div>
                     ) : null}
                 </DragOverlay>
@@ -288,8 +288,8 @@ const AdminDashboard = ({ token, onLogout }) => {
                     <div className="modal-preview-section">
                         <div className="preview-label">Live Preview</div>
                         <div style={{ width: '100%', maxWidth: '320px' }}>
-                            <ProductCard
-                                product={{
+                            <ProjectCard
+                                project={{
                                     ...formData,
                                     id: 'preview',
                                     image_url: formData.image_url || 'https://placehold.co/300x180?text=Preview'

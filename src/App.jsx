@@ -9,7 +9,7 @@ const App = () => {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/products");
+    navigate("/projects");
   };
 
   const handleKeyPress = (e) => {

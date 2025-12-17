@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import ProductCard from './ProductCard';
+import ProjectCard from './ProjectCard';
 
-const SortableProductCard = ({ product, onDelete, onEdit }) => {
+const SortableProjectCard = ({ project, onDelete, onEdit }) => {
     const {
         attributes,
         listeners,
         setNodeRef,
         transform,
         transition,
-    } = useSortable({ id: product.id });
+    } = useSortable({ id: project.id });
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -22,14 +22,14 @@ const SortableProductCard = ({ product, onDelete, onEdit }) => {
 
     return (
         <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <ProductCard
-                product={product}
+            <ProjectCard
+                project={project}
                 isAdmin={true}
                 onDelete={onDelete}
-                onClick={() => onEdit(product)}
+                onClick={() => onEdit(project)}
             />
         </div>
     );
 };
 
-export default SortableProductCard;
+export default SortableProjectCard;

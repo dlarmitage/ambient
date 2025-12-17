@@ -1,5 +1,5 @@
 import React from 'react';
-import '../ProductShowcase.css';
+import '../ProjectShowcase.css';
 
 // Ensure URL has a protocol prefix
 const ensureProtocol = (url) => {
@@ -8,14 +8,14 @@ const ensureProtocol = (url) => {
     return 'https://' + url;
 };
 
-const ProductCard = ({ product, isAdmin, onDelete, onClick }) => {
+const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
     const Wrapper = isAdmin ? 'div' : 'a';
     const props = isAdmin ? {
-        className: 'product-card admin-card', // Added admin-card class for specific overrides
+        className: 'project-card admin-card', // Added admin-card class for specific overrides
         onClick: onClick
     } : {
-        href: ensureProtocol(product.link),
-        className: 'product-card',
+        href: ensureProtocol(project.link),
+        className: 'project-card',
         target: '_blank',
         rel: 'noopener noreferrer'
     };
@@ -23,11 +23,11 @@ const ProductCard = ({ product, isAdmin, onDelete, onClick }) => {
     return (
         <Wrapper {...props}>
             <div className="card-media">
-                <img src={product.image_url} alt={product.name} />
+                <img src={project.image_url} alt={project.name} />
             </div>
             <div className="card-content">
-                <h2>{product.name}</h2>
-                <p>{product.description}</p>
+                <h2>{project.name}</h2>
+                <p>{project.description}</p>
                 <span className="card-cta">{isAdmin ? 'Edit' : 'learn more'}</span>
             </div>
             {isAdmin && onDelete && (
@@ -35,7 +35,7 @@ const ProductCard = ({ product, isAdmin, onDelete, onClick }) => {
                     className="card-delete-btn"
                     onClick={(e) => {
                         e.stopPropagation();
-                        onDelete(product.id);
+                        onDelete(project.id);
                     }}
                     aria-label="Delete app"
                 >
@@ -46,4 +46,4 @@ const ProductCard = ({ product, isAdmin, onDelete, onClick }) => {
     );
 };
 
-export default ProductCard;
+export default ProjectCard;

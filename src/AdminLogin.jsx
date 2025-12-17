@@ -54,7 +54,7 @@ const AdminLogin = ({ setToken }) => {
                         </svg>
                     </div>
                     <h1>Welcome back</h1>
-                    <p className="login-subtitle">Sign in to manage your products</p>
+                    <p className="login-subtitle">Sign in to manage your projects</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="login-form">

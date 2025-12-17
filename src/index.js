@@ -2,11 +2,11 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import App from "./App";
-import ProductShowcase from "./ProductShowcase";
+import ProjectShowcase from "./ProjectShowcase";
 import Privacy from "./Privacy";
 import Disclosures from "./Disclosures";
 import "./App.css";
-import "./ProductShowcase.css";
+import "./ProjectShowcase.css";
 import AdminLogin from "./AdminLogin";
 import AdminDashboard from "./AdminDashboard";
 
@@ -33,7 +33,7 @@ const AdminRoot = () => {
   return (
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/products" element={<ProductShowcase />} />
+      <Route path="/projects" element={<ProjectShowcase />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/disclosures" element={<Disclosures />} />
 

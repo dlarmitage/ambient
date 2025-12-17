@@ -240,8 +240,8 @@
     /* Ensure it stays in context */
 }
 
-/* Specific overrides for Product Cards in Admin Grid */
-.product-card.admin-card {
+/* Specific overrides for Project Cards in Admin Grid */
+.project-card.admin-card {
     background-color: #1e293b !important;
     color: #f1f5f9 !important;
     height: 100%;
@@ -249,12 +249,12 @@
     flex-direction: column;
 }
 
-.product-card.admin-card .card-content p {
+.project-card.admin-card .card-content p {
     color: #cbd5e1 !important;
     /* Ensure description is readable */
 }
 
-.product-card.admin-card .card-content h2 {
+.project-card.admin-card .card-content h2 {
     color: #f1f5f9 !important;
     /* Ensure title is white */
 }
