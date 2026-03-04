@@ -29,7 +29,7 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                 <h2>{project.name}</h2>
                 <p>{project.description}</p>
                 <span className="card-cta">{isAdmin ? 'Edit' : 'learn more'}</span>
-                {project.activity_display && !isAdmin && (
+                {project.activity_display && (
                     <div className="activity-badge">
                         <span className="activity-indicator">●</span>
                         <span className="activity-text">{project.activity_display}</span>
