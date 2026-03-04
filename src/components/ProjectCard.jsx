@@ -29,16 +29,12 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                 <h2>{project.name}</h2>
                 <p>{project.description}</p>
                 <span className="card-cta">{isAdmin ? 'Edit' : 'learn more'}</span>
-                {project.activity_display && (
+                {project.last_commit_date && project.recent_commits_count !== undefined && (
                     <div className="activity-badge">
                         <span className="activity-indicator">●</span>
-                        <span className="activity-text">{project.activity_display}</span>
-                    </div>
-                )}
-                {project.last_commit_date && project.recent_commits_count !== undefined && (
-                    <div className="commit-metadata">
-                        <span className="commit-info">Last commit: {project.activity_display}</span>
-                        <span className="commit-info">Commits: {project.recent_commits_count}</span>
+                        <span className="activity-text">
+                            Last commit: {project.activity_display} • {project.recent_commits_count} commits
+                        </span>
                     </div>
                 )}
             </div>
