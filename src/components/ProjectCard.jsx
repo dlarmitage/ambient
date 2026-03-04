@@ -33,7 +33,7 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                     <div className="activity-badge">
                         <span className="activity-indicator">●</span>
                         <span className="activity-text">
-                            Last commit: {project.activity_display} • {project.recent_commits_count} commits
+                            Last commit: {project.activity_display} • {project.recent_commits_count === 100 ? '100+' : project.recent_commits_count} commits
                         </span>
                     </div>
                 )}
