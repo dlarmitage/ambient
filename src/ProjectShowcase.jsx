@@ -8,6 +8,7 @@ const ProjectShowcase = () => {
     const [projects, setProjects] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
+    const [sortMode, setSortMode] = React.useState('name'); // 'name' or 'updated'
 
     React.useEffect(() => {
         fetch('/api/apps')
@@ -28,6 +29,22 @@ const ProjectShowcase = () => {
             });
     }, []);
 
+    const getSortedProjects = () => {
+        const projectsCopy = [...projects];
+        if (sortMode === 'name') {
+            return projectsCopy.sort((a, b) => a.name.localeCompare(b.name));
+        } else {
+            // Sort by last_commit_date descending (most recent first)
+            return projectsCopy.sort((a, b) => {
+                if (!a.last_commit_date) return 1;
+                if (!b.last_commit_date) return -1;
+                return new Date(b.last_commit_date) - new Date(a.last_commit_date);
+            });
+        }
+    };
+
+    const sortedProjects = getSortedProjects();
+
     return (
         <main className="showcase-wrapper">
             <nav className="breadcrumb">
@@ -40,10 +57,25 @@ const ProjectShowcase = () => {
                 <h1>Ambient Projects</h1>
             </header>
 
+            <div className="sort-controls">
+                <button
+                    className={`sort-btn ${sortMode === 'name' ? 'active' : ''}`}
+                    onClick={() => setSortMode('name')}
+                >
+                    By Name
+                </button>
+                <button
+                    className={`sort-btn ${sortMode === 'updated' ? 'active' : ''}`}
+                    onClick={() => setSortMode('updated')}
+                >
+                    By Last Update
+                </button>
+            </div>
+
             <section className="project-grid">
                 {loading && <p>Loading apps...</p>}
                 {error && <p className="error-message">{error}</p>}
-                {!loading && !error && projects.map((project) => (
+                {!loading && !error && sortedProjects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                 ))}
             </section>

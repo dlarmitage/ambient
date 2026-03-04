@@ -202,7 +202,8 @@ const AdminDashboard = ({ token, onLogout }) => {
             const data = await res.json();
             if (res.ok) {
                 fetchApps(); // Refresh the app list to show updated activity
-                setRefreshResults({ success: true, data });
+                // Auto-dismiss success after 2 seconds
+                setTimeout(() => setRefreshResults(null), 2000);
             } else {
                 setRefreshResults({ success: false, error: data.error || 'Failed to refresh' });
             }

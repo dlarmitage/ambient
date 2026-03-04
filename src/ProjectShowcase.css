@@ -28,6 +28,40 @@
     margin-bottom: 0.5rem;
 }
 
+/* Sort Controls */
+.sort-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sort-btn {
+    padding: 0.5rem 1rem;
+    background: transparent;
+    border: 1px solid #64748b;
+    color: #64748b;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.sort-btn:hover {
+    border-color: #0d9488;
+    color: #0d9488;
+}
+
+.sort-btn.active {
+    background: #0d9488;
+    border-color: #0d9488;
+    color: var(--brand-light);
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -159,4 +193,19 @@
     50% {
         opacity: 0.5;
     }
+}
+
+/* Commit Metadata */
+.commit-metadata {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.commit-info {
+    flex: 0 0 auto;
 }

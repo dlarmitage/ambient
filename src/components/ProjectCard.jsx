@@ -35,6 +35,12 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                         <span className="activity-text">{project.activity_display}</span>
                     </div>
                 )}
+                {project.last_commit_date && project.recent_commits_count !== undefined && (
+                    <div className="commit-metadata">
+                        <span className="commit-info">Last commit: {project.activity_display}</span>
+                        <span className="commit-info">Commits: {project.recent_commits_count}</span>
+                    </div>
+                )}
             </div>
             {isAdmin && onDelete && (
                 <button
