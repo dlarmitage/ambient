@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import App from "./App";
 import ProjectShowcase from "./ProjectShowcase";
 import Privacy from "./Privacy";
@@ -43,6 +43,9 @@ const AdminRoot = () => {
         path="/admin/dashboard"
         element={token ? <AdminDashboard token={token} onLogout={handleLogout} /> : <AdminLogin setToken={handleSetToken} />}
       />
+
+      {/* Catch-all redirect to Home */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };

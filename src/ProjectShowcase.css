@@ -125,3 +125,38 @@
     color: #d4d4d8;
     /* neutral-300 */
 }
+
+/* Activity Badge */
+.activity-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.activity-indicator {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #0d9488;
+    animation: pulse 2s infinite;
+}
+
+.activity-text {
+    font-weight: 500;
+    color: #475569;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}

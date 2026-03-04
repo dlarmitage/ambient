@@ -29,6 +29,12 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                 <h2>{project.name}</h2>
                 <p>{project.description}</p>
                 <span className="card-cta">{isAdmin ? 'Edit' : 'learn more'}</span>
+                {project.activity_display && !isAdmin && (
+                    <div className="activity-badge">
+                        <span className="activity-indicator">●</span>
+                        <span className="activity-text">{project.activity_display}</span>
+                    </div>
+                )}
             </div>
             {isAdmin && onDelete && (
                 <button

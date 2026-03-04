@@ -3,6 +3,9 @@ const { Pool } = require('pg');
 const cors = require('cors');
 require('dotenv').config();
 
+const { scheduleActivityUpdates } = require('./lib/activityScheduler');
+const { formatRelativeTime } = require('./lib/gitHubActivityHelper');
+
 const app = express();
 const port = process.env.PORT || 3001;
 
@@ -25,6 +28,13 @@ pool.query('SELECT NOW()', (err, res) => {
     console.log('Connected to database at:', res.rows[0].now);
   }
 });
+
+// Schedule activity metrics updates
+if (process.env.GITHUB_TOKEN) {
+  scheduleActivityUpdates();
+} else {
+  console.warn('⚠️  GITHUB_TOKEN not set - activity metrics will not be fetched');
+}
 
 // API Routes
 const bcrypt = require('bcryptjs');
@@ -77,7 +87,12 @@ const cheerio = require('cheerio');
 app.get('/api/apps', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM apps ORDER BY sort_order ASC, id ASC');
-    res.json(result.rows);
+    // Add formatted activity time to each app
+    const apps = result.rows.map(app => ({
+      ...app,
+      activity_display: app.last_commit_date ? formatRelativeTime(new Date(app.last_commit_date)) : 'No commits yet'
+    }));
+    res.json(apps);
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
