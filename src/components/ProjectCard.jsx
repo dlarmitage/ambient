@@ -32,9 +32,10 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                 {project.last_commit_date && project.recent_commits_count !== undefined && (
                     <div className="activity-badge">
                         <span className="activity-indicator">●</span>
-                        <span className="activity-text">
-                            Last commit: {project.activity_display} • {project.recent_commits_count === 100 ? '100+' : project.recent_commits_count} commits
-                        </span>
+                        <div className="activity-content">
+                            <span className="activity-left">Last commit: {project.activity_display}</span>
+                            <span className="activity-right">{project.recent_commits_count === 100 ? '100+' : project.recent_commits_count} commits</span>
+                        </div>
                     </div>
                 )}
             </div>
