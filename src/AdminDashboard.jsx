@@ -36,6 +36,7 @@ const AdminDashboard = ({ token, onLogout }) => {
     const [fetchingOg, setFetchingOg] = useState(false);
     const [activeId, setActiveId] = useState(null); // ID of item being dragged
     const [refreshingActivity, setRefreshingActivity] = useState(false);
+    const [refreshResults, setRefreshResults] = useState(null);
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
@@ -189,6 +190,7 @@ const AdminDashboard = ({ token, onLogout }) => {
 
     const handleRefreshActivity = async () => {
         setRefreshingActivity(true);
+        setRefreshResults(null);
         try {
             const res = await fetch('/api/activities/refresh', {
                 method: 'POST',
@@ -197,15 +199,16 @@ const AdminDashboard = ({ token, onLogout }) => {
                     'Authorization': `Bearer ${token}`
                 }
             });
+            const data = await res.json();
             if (res.ok) {
                 fetchApps(); // Refresh the app list to show updated activity
-                alert('Activity metrics updated successfully!');
+                setRefreshResults({ success: true, data });
             } else {
-                alert('Failed to refresh activity metrics');
+                setRefreshResults({ success: false, error: data.error || 'Failed to refresh' });
             }
         } catch (err) {
             console.error(err);
-            alert('Error refreshing activity metrics');
+            setRefreshResults({ success: false, error: err.message });
         } finally {
             setRefreshingActivity(false);
         }
@@ -224,6 +227,49 @@ const AdminDashboard = ({ token, onLogout }) => {
                     <button onClick={onLogout} className="logout-btn">Logout</button>
                 </div>
             </header>
+
+            {refreshResults && (
+                <div style={{
+                    marginBottom: '2rem',
+                    padding: '1rem',
+                    borderRadius: '8px',
+                    background: refreshResults.success ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                    border: `1px solid ${refreshResults.success ? '#22c55e' : '#ef4444'}`,
+                    color: refreshResults.success ? '#86efac' : '#fca5a5'
+                }}>
+                    <div style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>
+                        {refreshResults.success ? '✓ Refresh completed' : '✗ Refresh failed'}
+                    </div>
+                    {refreshResults.success ? (
+                        <pre style={{
+                            margin: '0.5rem 0 0 0',
+                            fontSize: '0.85rem',
+                            overflow: 'auto',
+                            background: 'rgba(15, 23, 42, 0.5)',
+                            padding: '0.75rem',
+                            borderRadius: '4px'
+                        }}>
+                            {JSON.stringify(refreshResults.data, null, 2)}
+                        </pre>
+                    ) : (
+                        <div>{refreshResults.error}</div>
+                    )}
+                    <button
+                        onClick={() => setRefreshResults(null)}
+                        style={{
+                            marginTop: '0.75rem',
+                            padding: '0.5rem 1rem',
+                            background: 'transparent',
+                            border: '1px solid currentColor',
+                            borderRadius: '4px',
+                            color: 'inherit',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Dismiss
+                    </button>
+                </div>
+            )}
 
             <DndContext
                 sensors={sensors}

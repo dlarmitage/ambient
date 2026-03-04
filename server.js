@@ -229,11 +229,11 @@ app.delete('/api/apps/:id', authenticateToken, async (req, res) => {
 app.post('/api/activities/refresh', authenticateToken, async (req, res) => {
   try {
     const { updateAllActivityMetrics } = require('./lib/activityScheduler');
-    await updateAllActivityMetrics();
-    res.json({ message: 'Activity metrics updated successfully' });
+    const results = await updateAllActivityMetrics();
+    res.json(results);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Failed to update activity metrics' });
+    res.status(500).json({ error: err.message || 'Failed to update activity metrics' });
   }
 });
 
