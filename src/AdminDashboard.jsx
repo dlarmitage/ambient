@@ -35,6 +35,7 @@ const AdminDashboard = ({ token, onLogout }) => {
     });
     const [fetchingOg, setFetchingOg] = useState(false);
     const [activeId, setActiveId] = useState(null); // ID of item being dragged
+    const [refreshingActivity, setRefreshingActivity] = useState(false);
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
@@ -186,13 +187,42 @@ const AdminDashboard = ({ token, onLogout }) => {
         }
     };
 
+    const handleRefreshActivity = async () => {
+        setRefreshingActivity(true);
+        try {
+            const res = await fetch('/api/activities/refresh', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (res.ok) {
+                fetchApps(); // Refresh the app list to show updated activity
+                alert('Activity metrics updated successfully!');
+            } else {
+                alert('Failed to refresh activity metrics');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error refreshing activity metrics');
+        } finally {
+            setRefreshingActivity(false);
+        }
+    };
+
     const activeApp = activeId ? apps.find(a => a.id === activeId) : null;
 
     return (
         <div className="admin-dashboard">
             <header className="dashboard-header">
                 <h1>Admin Dashboard</h1>
-                <button onClick={onLogout} className="logout-btn">Logout</button>
+                <div style={{ display: 'flex', gap: '1rem' }}>
+                    <button onClick={handleRefreshActivity} disabled={refreshingActivity} className="refresh-activity-btn" title="Refresh GitHub activity metrics">
+                        {refreshingActivity ? '↻ Updating...' : '↻ Refresh Activity'}
+                    </button>
+                    <button onClick={onLogout} className="logout-btn">Logout</button>
+                </div>
             </header>
 
             <DndContext

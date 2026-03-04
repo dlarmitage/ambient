@@ -225,6 +225,18 @@ app.delete('/api/apps/:id', authenticateToken, async (req, res) => {
   }
 });
 
+// Manual activity metrics refresh endpoint
+app.post('/api/activities/refresh', authenticateToken, async (req, res) => {
+  try {
+    const { updateAllActivityMetrics } = require('./lib/activityScheduler');
+    await updateAllActivityMetrics();
+    res.json({ message: 'Activity metrics updated successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to update activity metrics' });
+  }
+});
+
 // Export for Vercel
 module.exports = app;
 
