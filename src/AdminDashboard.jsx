@@ -247,12 +247,24 @@ const AdminDashboard = ({ token, onLogout }) => {
                             overflow: 'auto',
                             background: 'rgba(15, 23, 42, 0.5)',
                             padding: '0.75rem',
-                            borderRadius: '4px'
+                            borderRadius: '4px',
+                            color: '#86efac'
                         }}>
                             {JSON.stringify(refreshResults.data, null, 2)}
                         </pre>
                     ) : (
-                        <div>{refreshResults.error}</div>
+                        <div style={{
+                            background: 'rgba(15, 23, 42, 0.8)',
+                            padding: '0.75rem',
+                            borderRadius: '4px',
+                            marginTop: '0.5rem',
+                            color: '#fca5a5',
+                            fontFamily: 'monospace',
+                            whiteSpace: 'pre-wrap',
+                            wordBreak: 'break-word'
+                        }}>
+                            {refreshResults.error}
+                        </div>
                     )}
                     <button
                         onClick={() => setRefreshResults(null)}
