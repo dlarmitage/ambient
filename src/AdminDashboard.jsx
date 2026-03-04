@@ -30,7 +30,8 @@ const AdminDashboard = ({ token, onLogout }) => {
         name: '',
         description: '',
         link: '',
-        image_url: ''
+        image_url: '',
+        github_repo: ''
     });
     const [fetchingOg, setFetchingOg] = useState(false);
     const [activeId, setActiveId] = useState(null); // ID of item being dragged
@@ -100,7 +101,7 @@ const AdminDashboard = ({ token, onLogout }) => {
     // Modal Actions
     const openAddModal = () => {
         setEditingId(null);
-        setFormData({ name: '', description: '', link: '', image_url: '' });
+        setFormData({ name: '', description: '', link: '', image_url: '', github_repo: '' });
         setModalIsOpen(true);
     };
 
@@ -110,7 +111,8 @@ const AdminDashboard = ({ token, onLogout }) => {
             name: app.name,
             description: app.description,
             link: app.link,
-            image_url: app.image_url
+            image_url: app.image_url,
+            github_repo: app.github_repo || ''
         });
         setModalIsOpen(true);
     };
@@ -282,6 +284,14 @@ const AdminDashboard = ({ token, onLogout }) => {
                                     {fetchingOg ? '...' : 'Fetch OG'}
                                 </button>
                             </div>
+                        </div>
+                        <div className="form-group">
+                            <label>GitHub Repo <span style={{ fontSize: '0.85em', color: '#94a3b8' }}>(owner/repo)</span></label>
+                            <input
+                                value={formData.github_repo}
+                                onChange={e => setFormData({ ...formData, github_repo: e.target.value })}
+                                placeholder="e.g., darmitage/news-check"
+                            />
                         </div>
                     </div>
 

@@ -174,7 +174,7 @@ const ensureProtocol = (url) => {
 
 // Protected CRUD Routes
 app.post('/api/apps', authenticateToken, async (req, res) => {
-  const { name, description, image_url } = req.body;
+  const { name, description, image_url, github_repo } = req.body;
   const link = ensureProtocol(req.body.link);
   try {
     // Get max sort order
@@ -182,8 +182,8 @@ app.post('/api/apps', authenticateToken, async (req, res) => {
     const nextOrder = (maxOrderRes.rows[0].max_order || 0) + 1;
 
     const result = await pool.query(
-      'INSERT INTO apps (name, description, link, image_url, sort_order) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [name, description, link, image_url, nextOrder]
+      'INSERT INTO apps (name, description, link, image_url, github_repo, sort_order) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+      [name, description, link, image_url, github_repo, nextOrder]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
@@ -194,12 +194,12 @@ app.post('/api/apps', authenticateToken, async (req, res) => {
 
 app.put('/api/apps/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
-  const { name, description, image_url } = req.body;
+  const { name, description, image_url, github_repo } = req.body;
   const link = ensureProtocol(req.body.link);
   try {
     const result = await pool.query(
-      'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url) WHERE id = $5 RETURNING *',
-      [name, description, link, image_url, id]
+      'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url), github_repo = COALESCE($5, github_repo) WHERE id = $6 RETURNING *',
+      [name, description, link, image_url, github_repo, id]
     );
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'App not found' });
