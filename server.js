@@ -172,10 +172,17 @@ const ensureProtocol = (url) => {
   return 'https://' + url;
 };
 
+// Normalize GitHub repo to owner/repo format
+const normalizeGithubRepo = (repo) => {
+  if (!repo) return repo;
+  return repo.replace(/^https?:\/\/(www\.)?github\.com\//i, '').replace(/\/$/, '');
+};
+
 // Protected CRUD Routes
 app.post('/api/apps', authenticateToken, async (req, res) => {
-  const { name, description, image_url, github_repo, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type } = req.body;
+  const { name, description, image_url, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type } = req.body;
   const link = ensureProtocol(req.body.link);
+  const github_repo = normalizeGithubRepo(req.body.github_repo);
   try {
     // Get max sort order
     const maxOrderRes = await pool.query('SELECT MAX(sort_order) as max_order FROM apps');
@@ -194,8 +201,9 @@ app.post('/api/apps', authenticateToken, async (req, res) => {
 
 app.put('/api/apps/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
-  const { name, description, image_url, github_repo, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type } = req.body;
+  const { name, description, image_url, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type } = req.body;
   const link = ensureProtocol(req.body.link);
+  const github_repo = normalizeGithubRepo(req.body.github_repo);
   try {
     const result = await pool.query(
       'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url), github_repo = COALESCE($5, github_repo), pwa_available = $7, ios_available = $8, ios_link = $9, ios_link_type = $10, macos_available = $11, macos_link = $12, macos_link_type = $13 WHERE id = $6 RETURNING *',

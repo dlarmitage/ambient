@@ -405,7 +405,10 @@ const AdminDashboard = ({ token, onLogout }) => {
                             <label>GitHub Repo <span style={{ fontSize: '0.85em', color: '#94a3b8' }}>(owner/repo)</span></label>
                             <input
                                 value={formData.github_repo}
-                                onChange={e => setFormData({ ...formData, github_repo: e.target.value })}
+                                onChange={e => {
+                                    let val = e.target.value.replace(/^https?:\/\/(www\.)?github\.com\//i, '').replace(/\/$/, '');
+                                    setFormData({ ...formData, github_repo: val });
+                                }}
                                 placeholder="e.g., darmitage/news-check"
                             />
                         </div>
