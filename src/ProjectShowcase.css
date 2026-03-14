@@ -233,7 +233,7 @@
     cursor: pointer;
     transition: all 0.2s ease;
     text-decoration: none;
-    color: inherit;
+    color: #0d9488;
 }
 
 .platform-badge:hover {

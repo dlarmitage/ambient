@@ -198,8 +198,8 @@ app.put('/api/apps/:id', authenticateToken, async (req, res) => {
   const link = ensureProtocol(req.body.link);
   try {
     const result = await pool.query(
-      'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url), github_repo = COALESCE($5, github_repo), pwa_available = COALESCE($7, pwa_available), ios_available = COALESCE($8, ios_available), ios_link = COALESCE($9, ios_link), ios_link_type = COALESCE($10, ios_link_type), macos_available = COALESCE($11, macos_available), macos_link = COALESCE($12, macos_link), macos_link_type = COALESCE($13, macos_link_type) WHERE id = $6 RETURNING *',
-      [name, description, link, image_url, github_repo, id, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type]
+      'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url), github_repo = COALESCE($5, github_repo), pwa_available = $7, ios_available = $8, ios_link = $9, ios_link_type = $10, macos_available = $11, macos_link = $12, macos_link_type = $13 WHERE id = $6 RETURNING *',
+      [name, description, link, image_url, github_repo, id, pwa_available !== false, ios_available || false, ios_link || null, ios_link_type || null, macos_available || false, macos_link || null, macos_link_type || null]
     );
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'App not found' });

@@ -44,17 +44,30 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                     <div className="platform-badges">
                         {project.pwa_available && (
                             <div className="platform-badge" title="Progressive Web App">
-                                🌐
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <ellipse cx="12" cy="12" rx="4" ry="10"/>
+                                    <line x1="2" y1="12" x2="22" y2="12"/>
+                                </svg>
                             </div>
                         )}
                         {project.ios_available && project.ios_link && (
                             <a href={ensureProtocol(project.ios_link)} target="_blank" rel="noopener noreferrer" className="platform-badge" title={`iOS - ${project.ios_link_type === 'app_store' ? 'App Store' : project.ios_link_type === 'testflight' ? 'TestFlight' : 'Custom'}`}>
-                                📱
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="5" y="2" width="14" height="20" rx="3"/>
+                                    <line x1="5" y1="6" x2="19" y2="6"/>
+                                    <line x1="5" y1="18" x2="19" y2="18"/>
+                                    <line x1="12" y1="20" x2="12" y2="20.01"/>
+                                </svg>
                             </a>
                         )}
                         {project.macos_available && project.macos_link && (
                             <a href={ensureProtocol(project.macos_link)} target="_blank" rel="noopener noreferrer" className="platform-badge" title={`macOS - ${project.macos_link_type === 'app_store' ? 'App Store' : project.macos_link_type === 'testflight' ? 'TestFlight' : project.macos_link_type === 'dmg' ? 'DMG' : 'Custom'}`}>
-                                💻
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
                             </a>
                         )}
                     </div>
