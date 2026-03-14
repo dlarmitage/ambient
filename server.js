@@ -174,7 +174,7 @@ const ensureProtocol = (url) => {
 
 // Protected CRUD Routes
 app.post('/api/apps', authenticateToken, async (req, res) => {
-  const { name, description, image_url, github_repo } = req.body;
+  const { name, description, image_url, github_repo, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type } = req.body;
   const link = ensureProtocol(req.body.link);
   try {
     // Get max sort order
@@ -182,8 +182,8 @@ app.post('/api/apps', authenticateToken, async (req, res) => {
     const nextOrder = (maxOrderRes.rows[0].max_order || 0) + 1;
 
     const result = await pool.query(
-      'INSERT INTO apps (name, description, link, image_url, github_repo, sort_order) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [name, description, link, image_url, github_repo, nextOrder]
+      'INSERT INTO apps (name, description, link, image_url, github_repo, sort_order, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *',
+      [name, description, link, image_url, github_repo, nextOrder, pwa_available !== false, ios_available || false, ios_link || null, ios_link_type || null, macos_available || false, macos_link || null, macos_link_type || null]
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
@@ -194,12 +194,12 @@ app.post('/api/apps', authenticateToken, async (req, res) => {
 
 app.put('/api/apps/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
-  const { name, description, image_url, github_repo } = req.body;
+  const { name, description, image_url, github_repo, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type } = req.body;
   const link = ensureProtocol(req.body.link);
   try {
     const result = await pool.query(
-      'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url), github_repo = COALESCE($5, github_repo) WHERE id = $6 RETURNING *',
-      [name, description, link, image_url, github_repo, id]
+      'UPDATE apps SET name = COALESCE($1, name), description = COALESCE($2, description), link = COALESCE($3, link), image_url = COALESCE($4, image_url), github_repo = COALESCE($5, github_repo), pwa_available = COALESCE($7, pwa_available), ios_available = COALESCE($8, ios_available), ios_link = COALESCE($9, ios_link), ios_link_type = COALESCE($10, ios_link_type), macos_available = COALESCE($11, macos_available), macos_link = COALESCE($12, macos_link), macos_link_type = COALESCE($13, macos_link_type) WHERE id = $6 RETURNING *',
+      [name, description, link, image_url, github_repo, id, pwa_available, ios_available, ios_link, ios_link_type, macos_available, macos_link, macos_link_type]
     );
     if (result.rows.length === 0) {
       return res.status(404).json({ error: 'App not found' });

@@ -31,7 +31,14 @@ const AdminDashboard = ({ token, onLogout }) => {
         description: '',
         link: '',
         image_url: '',
-        github_repo: ''
+        github_repo: '',
+        pwa_available: true,
+        ios_available: false,
+        ios_link: '',
+        ios_link_type: 'app_store',
+        macos_available: false,
+        macos_link: '',
+        macos_link_type: 'app_store'
     });
     const [fetchingOg, setFetchingOg] = useState(false);
     const [activeId, setActiveId] = useState(null); // ID of item being dragged
@@ -103,7 +110,20 @@ const AdminDashboard = ({ token, onLogout }) => {
     // Modal Actions
     const openAddModal = () => {
         setEditingId(null);
-        setFormData({ name: '', description: '', link: '', image_url: '', github_repo: '' });
+        setFormData({
+            name: '',
+            description: '',
+            link: '',
+            image_url: '',
+            github_repo: '',
+            pwa_available: true,
+            ios_available: false,
+            ios_link: '',
+            ios_link_type: 'app_store',
+            macos_available: false,
+            macos_link: '',
+            macos_link_type: 'app_store'
+        });
         setModalIsOpen(true);
     };
 
@@ -114,7 +134,14 @@ const AdminDashboard = ({ token, onLogout }) => {
             description: app.description,
             link: app.link,
             image_url: app.image_url,
-            github_repo: app.github_repo || ''
+            github_repo: app.github_repo || '',
+            pwa_available: app.pwa_available !== false,
+            ios_available: app.ios_available || false,
+            ios_link: app.ios_link || '',
+            ios_link_type: app.ios_link_type || 'app_store',
+            macos_available: app.macos_available || false,
+            macos_link: app.macos_link || '',
+            macos_link_type: app.macos_link_type || 'app_store'
         });
         setModalIsOpen(true);
     };
@@ -381,6 +408,110 @@ const AdminDashboard = ({ token, onLogout }) => {
                                 onChange={e => setFormData({ ...formData, github_repo: e.target.value })}
                                 placeholder="e.g., darmitage/news-check"
                             />
+                        </div>
+
+                        {/* Platform Configuration Section */}
+                        <div style={{ marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid #334155' }}>
+                            <h3 style={{ marginBottom: '1rem', color: '#cbd5e1' }}>Platform Availability</h3>
+
+                            {/* PWA Section */}
+                            <div className="platform-section">
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.pwa_available}
+                                        onChange={e => setFormData({ ...formData, pwa_available: e.target.checked })}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                    <span>🌐 Progressive Web App (PWA)</span>
+                                </label>
+                            </div>
+
+                            {/* iOS Section */}
+                            <div className="platform-section">
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.ios_available}
+                                        onChange={e => setFormData({ ...formData, ios_available: e.target.checked })}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                    <span>📱 iOS App</span>
+                                </label>
+                                {formData.ios_available && (
+                                    <div style={{ marginTop: '0.75rem', marginLeft: '1.5rem' }}>
+                                        <div style={{ marginBottom: '0.5rem' }}>
+                                            <label style={{ fontSize: '0.9em', color: '#cbd5e1' }}>Distribution Type:</label>
+                                            <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
+                                                {['app_store', 'testflight', 'custom'].map(type => (
+                                                    <label key={type} style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}>
+                                                        <input
+                                                            type="radio"
+                                                            value={type}
+                                                            checked={formData.ios_link_type === type}
+                                                            onChange={e => setFormData({ ...formData, ios_link_type: e.target.value })}
+                                                            style={{ cursor: 'pointer' }}
+                                                        />
+                                                        <span style={{ fontSize: '0.9em' }}>
+                                                            {type === 'app_store' ? 'App Store' : type === 'testflight' ? 'TestFlight' : 'Custom URL'}
+                                                        </span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <input
+                                            type="url"
+                                            placeholder={`Enter iOS ${formData.ios_link_type === 'app_store' ? 'App Store' : formData.ios_link_type === 'testflight' ? 'TestFlight' : 'app'} link`}
+                                            value={formData.ios_link}
+                                            onChange={e => setFormData({ ...formData, ios_link: e.target.value })}
+                                            style={{ width: '100%', marginTop: '0.5rem', background: '#0f172a', color: 'white', padding: '0.5rem', border: '1px solid #334155', borderRadius: '4px' }}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* macOS Section */}
+                            <div className="platform-section">
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.macos_available}
+                                        onChange={e => setFormData({ ...formData, macos_available: e.target.checked })}
+                                        style={{ cursor: 'pointer' }}
+                                    />
+                                    <span>💻 macOS App</span>
+                                </label>
+                                {formData.macos_available && (
+                                    <div style={{ marginTop: '0.75rem', marginLeft: '1.5rem' }}>
+                                        <div style={{ marginBottom: '0.5rem' }}>
+                                            <label style={{ fontSize: '0.9em', color: '#cbd5e1' }}>Distribution Type:</label>
+                                            <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
+                                                {['app_store', 'testflight', 'dmg', 'custom'].map(type => (
+                                                    <label key={type} style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}>
+                                                        <input
+                                                            type="radio"
+                                                            value={type}
+                                                            checked={formData.macos_link_type === type}
+                                                            onChange={e => setFormData({ ...formData, macos_link_type: e.target.value })}
+                                                            style={{ cursor: 'pointer' }}
+                                                        />
+                                                        <span style={{ fontSize: '0.9em' }}>
+                                                            {type === 'app_store' ? 'App Store' : type === 'testflight' ? 'TestFlight' : type === 'dmg' ? 'DMG' : 'Custom URL'}
+                                                        </span>
+                                                    </label>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <input
+                                            type="url"
+                                            placeholder={`Enter macOS ${formData.macos_link_type === 'app_store' ? 'App Store' : formData.macos_link_type === 'testflight' ? 'TestFlight' : formData.macos_link_type === 'dmg' ? 'DMG' : 'app'} link`}
+                                            value={formData.macos_link}
+                                            onChange={e => setFormData({ ...formData, macos_link: e.target.value })}
+                                            style={{ width: '100%', marginTop: '0.5rem', background: '#0f172a', color: 'white', padding: '0.5rem', border: '1px solid #334155', borderRadius: '4px' }}
+                                        />
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
 

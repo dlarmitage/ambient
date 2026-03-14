@@ -38,6 +38,27 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                         </div>
                     </div>
                 )}
+
+                {/* Platform Badges */}
+                {(project.pwa_available || project.ios_available || project.macos_available) && (
+                    <div className="platform-badges">
+                        {project.pwa_available && (
+                            <div className="platform-badge" title="Progressive Web App">
+                                🌐
+                            </div>
+                        )}
+                        {project.ios_available && project.ios_link && (
+                            <a href={ensureProtocol(project.ios_link)} target="_blank" rel="noopener noreferrer" className="platform-badge" title={`iOS - ${project.ios_link_type === 'app_store' ? 'App Store' : project.ios_link_type === 'testflight' ? 'TestFlight' : 'Custom'}`}>
+                                📱
+                            </a>
+                        )}
+                        {project.macos_available && project.macos_link && (
+                            <a href={ensureProtocol(project.macos_link)} target="_blank" rel="noopener noreferrer" className="platform-badge" title={`macOS - ${project.macos_link_type === 'app_store' ? 'App Store' : project.macos_link_type === 'testflight' ? 'TestFlight' : project.macos_link_type === 'dmg' ? 'DMG' : 'Custom'}`}>
+                                💻
+                            </a>
+                        )}
+                    </div>
+                )}
             </div>
             {isAdmin && onDelete && (
                 <button
