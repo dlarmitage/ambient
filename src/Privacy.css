@@ -13,38 +13,100 @@
 .privacy-content {
   background: rgba(15, 23, 42, 0.85);
   border-radius: 12px;
-  max-width: 600px;
+  max-width: 640px;
   width: 100%;
   padding: 2.5rem 2rem;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.12);
   margin: 2rem 0;
 }
 
 .privacy-content h1 {
   font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 400;
-}
-
-.privacy-content p, .privacy-content ul {
-  font-size: 1.1rem;
-  margin-bottom: 1.2rem;
-  line-height: 1.6;
-}
-
-.privacy-content ul {
-  padding-left: 1.2rem;
-}
-
-.privacy-content li {
   margin-bottom: 0.5rem;
+  font-weight: 400;
+  color: #f8fafc;
 }
 
-.privacy-content a {
+.privacy-updated {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  margin-bottom: 1.5rem;
+}
+
+.privacy-intro {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: #cbd5e1;
+}
+
+/* Sections */
+.privacy-section {
+  margin-bottom: 1.75rem;
+}
+
+.privacy-section:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-section h2 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.6rem 0;
+  color: #f0fdfa;
+}
+
+.privacy-section p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  color: #cbd5e1;
+}
+
+.privacy-section p:last-child {
+  margin-bottom: 0;
+}
+
+.privacy-section ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+
+.privacy-section li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 0.6rem;
+  color: #cbd5e1;
+}
+
+.privacy-section li strong {
+  color: #f0fdfa;
+}
+
+/* Commitments list (the "never" list) */
+.privacy-commitments li {
+  position: relative;
+  padding-left: 0.25rem;
+}
+
+/* Contact section */
+.privacy-contact {
+  border-top: 1px solid rgba(148, 163, 184, 0.15);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+.privacy-section a {
   color: #0d9488;
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
+.privacy-section a:hover {
+  color: #14b8a6;
+}
+
+/* Breadcrumb */
 .privacy-breadcrumb {
   display: flex;
   align-items: center;
@@ -71,4 +133,4 @@
 .privacy-current {
   color: #f0fdfa;
   font-weight: 500;
-} 
+}

@@ -8,6 +8,8 @@ const Footer = () => (
       <span>© {new Date().getFullYear()} Ambient Technology</span>
       <span className="footer-separator">·</span>
       <Link to="/privacy" className="footer-link">Privacy</Link>
+      <span className="footer-separator">·</span>
+      <Link to="/support" className="footer-link">Support</Link>
     </div>
   </footer>
 );
