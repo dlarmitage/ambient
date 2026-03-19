@@ -23,6 +23,16 @@ import './ProjectShowcase.css';
 Modal.setAppElement('#root');
 
 const AdminDashboard = ({ token, onLogout }) => {
+    const authFetch = async (url, options = {}) => {
+        const res = await fetch(url, options);
+        if (res.status === 401 || res.status === 403) {
+            alert('Session expired. Please log in again.');
+            onLogout();
+            return null;
+        }
+        return res;
+    };
+
     const [apps, setApps] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [editingId, setEditingId] = useState(null);
@@ -92,7 +102,7 @@ const AdminDashboard = ({ token, onLogout }) => {
             }));
 
             try {
-                await fetch('/api/apps/reorder', {
+                await authFetch('/api/apps/reorder', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -178,7 +188,7 @@ const AdminDashboard = ({ token, onLogout }) => {
         const method = editingId ? 'PUT' : 'POST';
 
         try {
-            const res = await fetch(url, {
+            const res = await authFetch(url, {
                 method: method,
                 headers: {
                     'Content-Type': 'application/json',
@@ -186,6 +196,7 @@ const AdminDashboard = ({ token, onLogout }) => {
                 },
                 body: JSON.stringify(formData)
             });
+            if (!res) return;
             if (res.ok) {
                 fetchApps();
                 closeModal();
@@ -201,10 +212,11 @@ const AdminDashboard = ({ token, onLogout }) => {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to delete this app?')) return;
         try {
-            const res = await fetch(`/api/apps/${id}`, {
+            const res = await authFetch(`/api/apps/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
+            if (!res) return;
             if (res.ok) {
                 fetchApps(); // Refresh
             } else {
@@ -219,13 +231,14 @@ const AdminDashboard = ({ token, onLogout }) => {
         setRefreshingActivity(true);
         setRefreshResults(null);
         try {
-            const res = await fetch('/api/activities/refresh', {
+            const res = await authFetch('/api/activities/refresh', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
             });
+            if (!res) return;
             const data = await res.json();
             if (res.ok) {
                 fetchApps(); // Refresh the app list to show updated activity

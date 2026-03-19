@@ -67,7 +67,7 @@ app.post('/api/auth/login', async (req, res) => {
     }
 
     if (await bcrypt.compare(password, user.password_hash)) {
-      const accessToken = jwt.sign({ email: user.email }, process.env.JWT_SECRET || 'fallback-secret-key-change-me', { expiresIn: '1h' });
+      const accessToken = jwt.sign({ email: user.email }, process.env.JWT_SECRET || 'fallback-secret-key-change-me', { expiresIn: '24h' });
       res.json({ accessToken });
     } else {
       res.status(403).json({ error: 'Not Allowed' });
