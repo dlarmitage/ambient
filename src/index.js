@@ -6,6 +6,7 @@ import ProjectShowcase from "./ProjectShowcase";
 import Privacy from "./Privacy";
 import Disclosures from "./Disclosures";
 import Support from "./Support";
+import Terms from "./Terms";
 import "./App.css";
 import "./ProjectShowcase.css";
 import AdminLogin from "./AdminLogin";
@@ -38,6 +39,7 @@ const AdminRoot = () => {
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/disclosures" element={<Disclosures />} />
       <Route path="/support" element={<Support />} />
+      <Route path="/terms" element={<Terms />} />
 
       {/* Admin Routes */}
       <Route path="/admin" element={<AdminLogin setToken={handleSetToken} />} />

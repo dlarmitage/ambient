@@ -10,6 +10,8 @@ const Footer = () => (
       <Link to="/privacy" className="footer-link">Privacy</Link>
       <span className="footer-separator">·</span>
       <Link to="/support" className="footer-link">Support</Link>
+      <span className="footer-separator">·</span>
+      <Link to="/terms" className="footer-link">Terms of Use</Link>
     </div>
   </footer>
 );
