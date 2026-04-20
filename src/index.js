@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate, useLocation } from "react-router-dom";
 import App from "./App";
 import ProjectShowcase from "./ProjectShowcase";
 import Privacy from "./Privacy";
@@ -11,6 +11,15 @@ import "./App.css";
 import "./ProjectShowcase.css";
 import AdminLogin from "./AdminLogin";
 import AdminDashboard from "./AdminDashboard";
+
+const ScrollToTop = () => {
+  const { pathname, hash } = useLocation();
+  React.useEffect(() => {
+    if (hash) return;
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+  return null;
+};
 
 const AdminRoot = () => {
   // Simple token management in memory/localStorage for this demo
@@ -33,6 +42,8 @@ const AdminRoot = () => {
   };
 
   return (
+    <>
+    <ScrollToTop />
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="/projects" element={<ProjectShowcase />} />
@@ -51,6 +62,7 @@ const AdminRoot = () => {
       {/* Catch-all redirect to Home */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </>
   );
 };
 

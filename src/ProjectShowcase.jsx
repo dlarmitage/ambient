@@ -54,12 +54,15 @@ const ProjectShowcase = () => {
     return (
         <div className="showcase-wrapper">
             <nav id="showcase-nav">
-                <Link to="/" className="brand">
-                    ambient<span className="dot">.</span>technology
-                </Link>
+                <div className="brand-group">
+                    <Link to="/" className="brand">
+                        ambient<span className="dot">.</span>technology
+                    </Link>
+                    <span className="brand-crumb">/ Projects</span>
+                </div>
                 <div className="nav-links">
-                    <Link to="/" className="hide-mobile">← Home</Link>
                     <a href="/#story" className="hide-mobile">Story</a>
+                    <a href="/#work">Work</a>
                     <a href="mailto:hello@ambient.technology">Contact</a>
                 </div>
             </nav>
