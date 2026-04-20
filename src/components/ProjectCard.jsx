@@ -81,8 +81,9 @@ const ProjectCard = ({ project, isAdmin, onDelete, onClick }) => {
                         onDelete(project.id);
                     }}
                     aria-label="Delete app"
+                    title="Delete"
                 >
-                    🗑
+                    ×
                 </button>
             )}
         </Wrapper>
