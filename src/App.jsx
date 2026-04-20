@@ -1,8 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
+import ContactModal from "./ContactModal";
 
 const App = () => {
+  const [contactOpen, setContactOpen] = useState(false);
+
+  const openContact = (e) => {
+    e.preventDefault();
+    setContactOpen(true);
+  };
+
   useEffect(() => {
     const nav = document.getElementById("nav");
     const onScroll = () => {
@@ -39,8 +47,8 @@ const App = () => {
         </div>
         <div className="nav-links">
           <a href="#story" className="hide-mobile">Story</a>
-          <a href="#work">Work</a>
-          <a href="#contact">Contact</a>
+          <Link to="/projects">Projects</Link>
+          <a href="#contact" onClick={openContact}>Contact</a>
         </div>
       </nav>
 
@@ -191,7 +199,7 @@ const App = () => {
           </div>
         </section>
 
-        <section id="work" className="mission">
+        <section className="mission">
           <div className="section-label reveal" style={{ justifyContent: "center" }}>What Ambient is</div>
           <h2 className="reveal">A small studio building software that's <em>useful, honest, and quiet.</em></h2>
           <p className="reveal">
@@ -264,7 +272,7 @@ const App = () => {
           </div>
           <div className="footer-contact">
             <div className="footer-contact-label">Say hello</div>
-            <a href="mailto:hello@ambient.technology">hello@ambient.technology</a>
+            <a href="#contact" onClick={openContact}>hello@ambient.technology</a>
           </div>
         </div>
         <div className="footer-base">
@@ -280,6 +288,8 @@ const App = () => {
           <span>Built quietly.</span>
         </div>
       </footer>
+
+      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 };

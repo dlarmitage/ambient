@@ -107,6 +107,11 @@
     transition: color 0.2s ease;
 }
 .showcase-wrapper .nav-links a:hover { color: var(--accent-deep); }
+.showcase-wrapper .nav-links a.is-active {
+    color: var(--ink);
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+}
 
 /* ============ HEADER ============ */
 .showcase-wrapper .showcase-header {

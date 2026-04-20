@@ -1,6 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
+const { Resend } = require('resend');
 require('dotenv').config();
 
 const { scheduleActivityUpdates } = require('./lib/activityScheduler');
@@ -230,6 +231,98 @@ app.delete('/api/apps/:id', authenticateToken, async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// Public config for the client (non-secret values only)
+app.get('/api/config', (req, res) => {
+  res.json({
+    turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || null,
+  });
+});
+
+// Contact form — Turnstile-verified, rate-limited, delivered via Resend
+const contactRateLimit = new Map(); // ip -> [timestamps]
+const CONTACT_WINDOW_MS = 60 * 60 * 1000;
+const CONTACT_MAX_PER_WINDOW = 5;
+
+const clientIp = (req) =>
+  (req.headers['x-forwarded-for'] || '').split(',')[0].trim() ||
+  req.socket.remoteAddress ||
+  'unknown';
+
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, message, turnstileToken } = req.body || {};
+
+    if (!name || !email || !message || !turnstileToken) {
+      return res.status(400).json({ error: 'Missing required fields.' });
+    }
+    if (typeof message !== 'string' || message.length > 5000) {
+      return res.status(400).json({ error: 'Message is too long.' });
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ error: 'Please enter a valid email address.' });
+    }
+
+    const ip = clientIp(req);
+    const now = Date.now();
+    const history = (contactRateLimit.get(ip) || []).filter(t => now - t < CONTACT_WINDOW_MS);
+    if (history.length >= CONTACT_MAX_PER_WINDOW) {
+      return res.status(429).json({ error: 'Too many messages from this address. Try again later.' });
+    }
+
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        secret: process.env.TURNSTILE_SECRET_KEY || '',
+        response: turnstileToken,
+        remoteip: ip,
+      }),
+    });
+    const verifyData = await verifyRes.json();
+    if (!verifyData.success) {
+      return res.status(400).json({ error: 'Verification failed. Please try again.' });
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY not set');
+      return res.status(500).json({ error: 'Email service not configured.' });
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    const to = process.env.CONTACT_TO_EMAIL || 'hello@ambient.technology';
+    const fromName = 'Ambient Technology';
+    const from = `${fromName} <${to}>`;
+
+    const safeName = String(name).slice(0, 200);
+    const safeEmail = String(email).slice(0, 320);
+    const plainBody = [
+      `From: ${safeName} <${safeEmail}>`,
+      `IP: ${ip}`,
+      '',
+      String(message),
+    ].join('\n');
+
+    const { error } = await resend.emails.send({
+      from,
+      to,
+      replyTo: safeEmail,
+      subject: `New message from ${safeName} via ambient.technology`,
+      text: plainBody,
+    });
+
+    if (error) {
+      console.error('Resend error:', error);
+      return res.status(502).json({ error: 'Could not send message. Please try again.' });
+    }
+
+    contactRateLimit.set(ip, [...history, now]);
+    return res.json({ ok: true });
+  } catch (err) {
+    console.error('Contact endpoint error:', err);
+    return res.status(500).json({ error: 'Unexpected error.' });
   }
 });
 

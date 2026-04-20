@@ -1,14 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ProjectShowcase.css";
 import Footer from "./Footer";
 import ProjectCard from "./components/ProjectCard";
+import ContactModal from "./ContactModal";
 
 const ProjectShowcase = () => {
     const [projects, setProjects] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
     const [sortMode, setSortMode] = React.useState('name');
+    const [contactOpen, setContactOpen] = useState(false);
+
+    const openContact = (e) => {
+        e.preventDefault();
+        setContactOpen(true);
+    };
 
     React.useEffect(() => {
         fetch('/api/apps')
@@ -62,8 +69,8 @@ const ProjectShowcase = () => {
                 </div>
                 <div className="nav-links">
                     <a href="/#story" className="hide-mobile">Story</a>
-                    <a href="/#work">Work</a>
-                    <a href="mailto:hello@ambient.technology">Contact</a>
+                    <Link to="/projects" className="is-active">Projects</Link>
+                    <a href="#contact" onClick={openContact}>Contact</a>
                 </div>
             </nav>
 
@@ -103,6 +110,8 @@ const ProjectShowcase = () => {
             </section>
 
             <Footer />
+
+            <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
         </div>
     );
 };
