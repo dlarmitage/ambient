@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import "./ContactModal.css";
 
 const TURNSTILE_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
@@ -116,7 +117,7 @@ const ContactModal = ({ open, onClose }) => {
     }
   };
 
-  return (
+  return createPortal(
     <div className="contact-backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-label="Contact Ambient Technology">
       <div className="contact-modal" onClick={(e) => e.stopPropagation()}>
         <button className="contact-close" onClick={onClose} aria-label="Close">×</button>
@@ -181,7 +182,8 @@ const ContactModal = ({ open, onClose }) => {
           </form>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
