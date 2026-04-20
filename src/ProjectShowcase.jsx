@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ProjectShowcase.css";
 import Footer from "./Footer";
@@ -8,14 +8,12 @@ const ProjectShowcase = () => {
     const [projects, setProjects] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
-    const [sortMode, setSortMode] = React.useState('name'); // 'name' or 'updated'
+    const [sortMode, setSortMode] = React.useState('name');
 
     React.useEffect(() => {
         fetch('/api/apps')
             .then(res => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!res.ok) throw new Error('Network response was not ok');
                 return res.json();
             })
             .then(data => {
@@ -29,60 +27,81 @@ const ProjectShowcase = () => {
             });
     }, []);
 
+    useEffect(() => {
+        const nav = document.getElementById("showcase-nav");
+        const onScroll = () => {
+            if (!nav) return;
+            nav.classList.toggle("scrolled", window.scrollY > 20);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
+
     const getSortedProjects = () => {
         const projectsCopy = [...projects];
         if (sortMode === 'name') {
             return projectsCopy.sort((a, b) => a.name.localeCompare(b.name));
-        } else {
-            // Sort by last_commit_date descending (most recent first)
-            return projectsCopy.sort((a, b) => {
-                if (!a.last_commit_date) return 1;
-                if (!b.last_commit_date) return -1;
-                return new Date(b.last_commit_date) - new Date(a.last_commit_date);
-            });
         }
+        return projectsCopy.sort((a, b) => {
+            if (!a.last_commit_date) return 1;
+            if (!b.last_commit_date) return -1;
+            return new Date(b.last_commit_date) - new Date(a.last_commit_date);
+        });
     };
 
     const sortedProjects = getSortedProjects();
 
     return (
-        <main className="showcase-wrapper">
-            <nav className="breadcrumb">
-                <Link to="/" className="breadcrumb-link">Home</Link>
-                <span className="breadcrumb-separator">›</span>
-                <span className="breadcrumb-current">Projects</span>
+        <div className="showcase-wrapper">
+            <nav id="showcase-nav">
+                <Link to="/" className="brand">
+                    ambient<span className="dot">.</span>technology
+                </Link>
+                <div className="nav-links">
+                    <Link to="/" className="hide-mobile">← Home</Link>
+                    <a href="/#story" className="hide-mobile">Story</a>
+                    <a href="mailto:hello@ambient.technology">Contact</a>
+                </div>
             </nav>
 
             <header className="showcase-header">
-                <h1>Ambient Projects</h1>
+                <div className="section-label">Projects · The full set</div>
+                <h1 className="showcase-title">
+                    Everything we're <em>building right now</em>, in one place.
+                </h1>
+                <p className="showcase-sub">
+                    Live work and exploratory pieces alike. Some is for sale, some is free, some exists because it should exist and there was an afternoon.
+                </p>
             </header>
 
             <div className="sort-controls">
+                <span className="sort-label">Sort</span>
                 <button
                     className={`sort-btn ${sortMode === 'name' ? 'active' : ''}`}
                     onClick={() => setSortMode('name')}
                 >
-                    By Name
+                    By name
                 </button>
+                <span className="sort-sep">·</span>
                 <button
                     className={`sort-btn ${sortMode === 'updated' ? 'active' : ''}`}
                     onClick={() => setSortMode('updated')}
                 >
-                    By Last Update
+                    By last update
                 </button>
             </div>
 
             <section className="project-grid">
-                {loading && <p>Loading apps...</p>}
-                {error && <p className="error-message">{error}</p>}
+                {loading && <p className="showcase-status">Loading…</p>}
+                {error && <p className="showcase-status error">{error}</p>}
                 {!loading && !error && sortedProjects.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                 ))}
             </section>
+
             <Footer />
-        </main>
+        </div>
     );
 };
 
-
-export default ProjectShowcase; 
+export default ProjectShowcase;

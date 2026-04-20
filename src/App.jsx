@@ -39,7 +39,7 @@ const App = () => {
         </div>
         <div className="nav-links">
           <a href="#story" className="hide-mobile">Story</a>
-          <Link to="/projects">Work</Link>
+          <a href="#work">Work</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -90,7 +90,7 @@ const App = () => {
           </p>
         </section>
 
-        <section id="work">
+        <section>
           <div className="timeline-intro reveal">
             <div className="section-label">Four companies, one instinct</div>
             <h2>After GeoGraphix, I kept chasing a particular kind of idea — the kind where the technology is quietly present, doing useful work, without demanding your attention.</h2>
@@ -191,7 +191,7 @@ const App = () => {
           </div>
         </section>
 
-        <section className="mission">
+        <section id="work" className="mission">
           <div className="section-label reveal" style={{ justifyContent: "center" }}>What Ambient is</div>
           <h2 className="reveal">A small studio building software that's <em>useful, honest, and quiet.</em></h2>
           <p className="reveal">
