@@ -1,0 +1,48 @@
+# Ambient Technology
+
+> A small independent software studio in Fort Collins, Colorado, founded in 2022 by Dave Armitage. Ambient builds software that is useful, engaging, and sometimes magical — with the belief that technology is at its best when it fades into the background and quietly makes something better.
+
+## About the founder
+
+Dave Armitage has spent roughly four decades founding and building software companies:
+
+- **GeoGraphix (1984–1996)** — One of the first 2D (and later 3D) geographic information systems, built for the oil and gas industry. Achieved 90%+ market share in its category. Acquired by Halliburton in 1996. Still operating today.
+- **Qubit (1996–2001)** — A wireless internet tablet, a decade before the iPad. Won CES Product of the Year in 2001. The company did not survive the dot-com bust; the idea, of course, did.
+- **Cartasite (2002–2017)** — Real-time wireless data merged with GPS. In 2007, in partnership with the City and County of Denver, Cartasite proved that accelerometers, gyros, and the right algorithm could predict which drivers were most likely to crash before they crashed. The resulting product (ROVR) was showcased at the 2008 DNC. By the time of the GeoForce acquisition in 2017, Cartasite had deployed in 31 countries and reduced crashes by over 60% in oil-and-gas fleets.
+- **Project Canary (2017–2020)** — Real-time fugitive methane emissions monitoring, disguised as bluebird houses. Within months of launch, monitoring wells representing more than 10% of U.S. natural gas production. Still operating.
+
+## The thesis behind Ambient Technology
+
+In 1996, GeoGraphix represented roughly 150 person-years of engineering. Armitage's thesis for Ambient is that with today's AI-assisted tools, the entire GeoGraphix codebase could be rebuilt — and surpassed — by one person in six weeks. The cost of *trying* has collapsed. Ideas that were too small to justify a team are now worth building. Ideas that were too ambitious for a solo developer are now within reach.
+
+Ambient exists to explore that space: a small studio making software where the technology is quietly present, doing useful work, without demanding your attention. Some of what Ambient makes is for sale. Some is free. Some exists because it should exist.
+
+## The test
+
+Does it make someone's day a little better, or the world a little better, without asking for too much in return?
+
+## Current projects
+
+Live work and side explorations, many in active development. See https://ambient.technology/projects for the full, current list with descriptions, links, and platforms (web, iOS, macOS).
+
+Representative projects include:
+
+- **CourseMagic** — A Notion-native, AI-assisted course creation platform. Turn an outline and a voice into a finished course without leaving the tool you already think in.
+- **TerraTales** — A map-based storytelling app for iOS. Vintage cartographic aesthetics, modern AI voices, place-based stories that find you when you're near them.
+- **RecipeWorks** — An AI-assisted recipe organizer for iOS. Import from anywhere, cook from anywhere.
+- **Care for the Kid** — An online mental health course for children navigating divorce. Built because some software should exist whether or not it makes money.
+
+## Contact
+
+- Website: https://ambient.technology
+- Email: hello@ambient.technology
+- Location: Fort Collins, Colorado, USA
+- Founder on GitHub: https://github.com/dlarmitage
+
+## Key pages
+
+- Home: https://ambient.technology/
+- Projects: https://ambient.technology/projects
+- Privacy Policy: https://ambient.technology/privacy
+- Terms of Use: https://ambient.technology/terms
+- Support: https://ambient.technology/support

@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate, useLocation } from "react-router-dom";
 import App from "./App";
 import ProjectShowcase from "./ProjectShowcase";
@@ -67,9 +67,14 @@ const AdminRoot = () => {
 };
 
 const container = document.getElementById("root");
-const root = createRoot(container);
-root.render(
+const app = (
   <Router>
     <AdminRoot />
   </Router>
 );
+
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
