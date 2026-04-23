@@ -59,7 +59,7 @@ const App = () => {
             Technology at its best <em>fades into the background</em> and quietly makes something better.
           </h1>
           <p className="hero-sub">
-            Ambient is a small studio building software that's useful, honest, and ... whenever possible ... quiet. A forty-year pattern of noticing when tools recede, continued with the tools of this moment.
+            Ambient is a small studio building software that's useful, engaging, and sometimes magical. Ours is a forty-year journey of noticing when tools recede, emerge, and transform.
           </p>
           <div className="hero-meta">
             <span>№ 001 ... Landing</span>
@@ -72,7 +72,7 @@ const App = () => {
         </section>
 
         <section id="story" className="vertigo">
-          <div className="section-label reveal">A note on the name</div>
+          <div className="section-label reveal">The moment we are in...</div>
           <p className="vertigo-intro reveal">
             In 1996, I sold my first software company ... <em>GeoGraphix</em>, one of the first 2D and eventually 3D geographic information systems. By the time Halliburton acquired us, we held over 90% market share. The product represented something like 150 person-years of engineering.
           </p>
