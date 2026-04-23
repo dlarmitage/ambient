@@ -79,6 +79,49 @@ const ProjectShowcase = () => {
 
     const sortedProjects = getSortedProjects();
 
+    const collectionSchema = projects.length > 0 ? {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "CollectionPage",
+                "@id": "https://ambient.technology/projects",
+                "url": "https://ambient.technology/projects",
+                "name": "Projects · Ambient Technology",
+                "description": "Every project Ambient Technology is building right now — live work and side explorations. Some are for sale, some are free, and some exist only because they should.",
+                "isPartOf": { "@id": "https://ambient.technology/#website" },
+                "publisher": { "@id": "https://ambient.technology/#org" },
+                "mainEntity": {
+                    "@type": "ItemList",
+                    "numberOfItems": projects.length,
+                    "itemListElement": projects.map((p, i) => ({
+                        "@type": "ListItem",
+                        "position": i + 1,
+                        "item": { "@id": `https://ambient.technology/projects#project-${p.id}` }
+                    }))
+                }
+            },
+            ...projects.map((p) => {
+                const operatingSystems = [
+                    p.ios_available && "iOS",
+                    p.macos_available && "macOS",
+                    p.pwa_available && "Web"
+                ].filter(Boolean);
+                const node = {
+                    "@type": "SoftwareApplication",
+                    "@id": `https://ambient.technology/projects#project-${p.id}`,
+                    "name": p.name,
+                    "description": p.description,
+                    "author": { "@id": "https://ambient.technology/#org" },
+                    "isPartOf": { "@id": "https://ambient.technology/projects" }
+                };
+                if (p.link) node.url = p.link;
+                if (p.image_url) node.image = p.image_url;
+                if (operatingSystems.length) node.operatingSystem = operatingSystems.join(", ");
+                return node;
+            })
+        ]
+    } : null;
+
     return (
         <div className="showcase-wrapper">
             <Seo
@@ -86,6 +129,12 @@ const ProjectShowcase = () => {
                 description="Every project Ambient Technology is building right now ... live work and side explorations. Some are for sale, some are free, and some exist only because they should."
                 path="/projects"
             />
+            {collectionSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+                />
+            )}
             <nav id="showcase-nav">
                 <div className="brand-group">
                     <Link to="/" className="brand">
