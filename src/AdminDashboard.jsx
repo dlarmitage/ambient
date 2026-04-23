@@ -55,6 +55,7 @@ const AdminDashboard = ({ token, onLogout }) => {
     const [activeId, setActiveId] = useState(null);
     const [refreshingActivity, setRefreshingActivity] = useState(false);
     const [refreshResults, setRefreshResults] = useState(null);
+    const [loggingOut, setLoggingOut] = useState(false);
 
     const sensors = useSensors(
         useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -239,6 +240,23 @@ const AdminDashboard = ({ token, onLogout }) => {
         }
     };
 
+    const handleLogout = async () => {
+        setLoggingOut(true);
+        try {
+            await fetch('/api/activities/refresh', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+        } catch (err) {
+            console.error('Activity refresh on logout failed', err);
+        } finally {
+            onLogout();
+        }
+    };
+
     const activeApp = activeId ? apps.find(a => a.id === activeId) : null;
 
     return (
@@ -260,7 +278,14 @@ const AdminDashboard = ({ token, onLogout }) => {
                         {refreshingActivity ? 'Refreshing…' : 'Refresh activity'}
                     </button>
                     <Link to="/projects" className="hide-mobile">View site</Link>
-                    <button type="button" onClick={onLogout} className="nav-action">Logout</button>
+                    <button
+                        type="button"
+                        onClick={handleLogout}
+                        disabled={loggingOut}
+                        className="nav-action"
+                    >
+                        {loggingOut ? 'Logging out…' : 'Logout'}
+                    </button>
                 </div>
             </nav>
 

@@ -80,7 +80,7 @@ const ProjectShowcase = () => {
                     Everything we're <em>building right now</em>, in one place.
                 </h1>
                 <p className="showcase-sub">
-                    Live work and exploratory pieces alike. Some is for sale, some is free, some exists because it should exist and there was an afternoon.
+                    A mix of live projects and side explorations. Some are for sale, some are free, and some exist only because they should.
                 </p>
             </header>
 
