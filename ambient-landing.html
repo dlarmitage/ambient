@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ambient Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F4F1EA;
+    --paper-deep: #EDE8DD;
+    --ink: #1A1713;
+    --ink-soft: #4A433C;
+    --ink-faint: #8A8075;
+    --rule: #D9D2C4;
+    --accent: #B8863B;
+    --accent-deep: #8F6625;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter Tight", -apple-system, sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--serif);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Paper grain texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+  }
+
+  main, nav, footer { position: relative; z-index: 2; }
+
+  /* Base link styling — prevents browser default blue/violet */
+  a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  a:visited { color: var(--ink); }
+
+  /* ============ NAV ============ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    background: rgba(244, 241, 234, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  nav.scrolled { border-bottom-color: var(--rule); }
+
+  .brand {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 14;
+  }
+  .brand .dot {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover { color: var(--accent-deep); }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s ease forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+    vertical-align: middle;
+    margin-right: 1rem;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 6.5vw, 6rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-variation-settings: "opsz" 144;
+    max-width: 18ch;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.4s ease forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-deep);
+  }
+
+  .hero-sub {
+    margin-top: 3rem;
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 48ch;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.7s ease forwards;
+  }
+
+  .hero-meta {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    right: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    opacity: 0;
+    animation: fadeUp 1.2s 1s ease forwards;
+  }
+  .scroll-cue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .scroll-cue .line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, var(--ink-faint));
+    animation: scrollPulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ============ SECTION BASE ============ */
+  section {
+    padding: 8rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .section-label::before {
+    content: "";
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ============ VERTIGO SECTION ============ */
+  .vertigo {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 8rem 3rem;
+  }
+
+  .vertigo-intro {
+    max-width: 56ch;
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 5rem;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+  .vertigo-intro em { font-style: italic; color: var(--accent-deep); }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .compare-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .compare-col:last-child { padding-top: 0; }
+
+  .compare-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .compare-big {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    font-variation-settings: "opsz" 144;
+    color: var(--ink);
+  }
+  .compare-col.then .compare-big { color: var(--ink-soft); }
+  .compare-col.now .compare-big { color: var(--accent-deep); }
+
+  .compare-unit {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+
+  .compare-detail {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    margin-top: 1rem;
+  }
+
+  .compare-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--ink-faint);
+  }
+
+  .vertigo-outro {
+    margin-top: 5rem;
+    max-width: 56ch;
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline-intro {
+    max-width: 60ch;
+    margin-bottom: 6rem;
+  }
+  .timeline-intro h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+    font-variation-settings: "opsz" 144;
+  }
+  .timeline-intro p {
+    color: var(--ink-soft);
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .tl-entry {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .tl-entry:last-child { border-bottom: 1px solid var(--rule); }
+
+  .tl-year {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    padding-top: 0.5rem;
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+  }
+
+  .tl-body { max-width: 64ch; }
+
+  .tl-name {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    font-variation-settings: "opsz" 144;
+  }
+  .tl-name .em { color: var(--accent-deep); font-style: italic; font-weight: 300; }
+
+  .tl-thesis {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .tl-story {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .tl-outcome {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .tl-outcome span strong {
+    display: block;
+    font-family: var(--serif);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+    margin-top: 0.35rem;
+  }
+
+  .tl-pattern {
+    margin-top: 6rem;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    line-height: 1.4;
+    color: var(--ink);
+    max-width: 42ch;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: -0.015em;
+  }
+  .tl-pattern .accent { color: var(--accent-deep); }
+
+  /* ============ CHANGED SECTION ============ */
+  .changed {
+    background: var(--paper-deep);
+    margin: 0 -3rem;
+    padding: 10rem 3rem;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .changed-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .changed h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    max-width: 22ch;
+    margin-bottom: 3rem;
+    font-variation-settings: "opsz" 144;
+  }
+  .changed h2 em {
+    font-style: italic;
+    color: var(--accent-deep);
+  }
+
+  .changed p {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--ink);
+    max-width: 62ch;
+    margin-bottom: 1.75rem;
+  }
+  .changed p.lead {
+    font-size: 1.35rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+
+  .pull {
+    margin: 4rem 0;
+    padding: 0 3rem;
+    border-left: 2px solid var(--accent);
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    line-height: 1.4;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 34ch;
+    font-style: italic;
+  }
+
+  /* ============ MISSION ============ */
+  .mission {
+    text-align: center;
+    padding: 10rem 3rem;
+  }
+  .mission h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5.5vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    max-width: 20ch;
+    margin: 0 auto 2.5rem;
+    font-variation-settings: "opsz" 144;
+  }
+  .mission h2 em { font-style: italic; color: var(--accent-deep); }
+  .mission p {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 54ch;
+    margin: 0 auto 1.5rem;
+    font-weight: 300;
+  }
+  .mission .test {
+    margin-top: 3.5rem;
+    padding: 2.5rem 3rem;
+    border: 1px solid var(--rule);
+    max-width: 54ch;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .mission .test-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 1rem;
+    font-style: normal;
+  }
+
+  /* ============ PROJECTS ============ */
+  .projects {
+    padding: 8rem 3rem 10rem;
+  }
+  .projects-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .projects-head h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    max-width: 20ch;
+    font-variation-settings: "opsz" 144;
+  }
+  .projects-link {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .projects-link:hover { color: var(--ink); border-color: var(--ink); }
+
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .project {
+    padding: 2.5rem 2.5rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .project:nth-child(2n) { border-right: none; }
+  .project:hover { background: rgba(184, 134, 59, 0.04); }
+  .project:hover .project-arrow { transform: translateX(6px); color: var(--accent-deep); }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+  }
+  .project-name {
+    font-family: var(--serif);
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+    line-height: 1.1;
+  }
+  .project-desc {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    flex: 1;
+  }
+  .project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .project-arrow {
+    transition: transform 0.25s ease, color 0.25s ease;
+    font-family: var(--serif);
+    font-size: 1.2rem;
+  }
+
+  .projects-more {
+    margin-top: 4rem;
+    text-align: center;
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: -0.015em;
+    color: var(--ink-soft);
+    max-width: 40ch;
+    margin-left: auto;
+    margin-right: auto;
+    font-style: italic;
+  }
+  .projects-more a {
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 2px;
+    font-style: normal;
+    font-weight: 400;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .projects-more a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 5rem 3rem 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 5rem;
+  }
+  .footer-msg {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 300;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    max-width: 24ch;
+  }
+  .footer-msg em { font-style: italic; color: var(--accent-deep); }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: right;
+  }
+  .footer-contact-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .footer-contact a {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 3px;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .footer-contact a:hover {
+    border-color: var(--accent);
+    color: var(--accent-deep);
+  }
+
+  .footer-base {
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 860px) {
+    nav { padding: 1.25rem 1.5rem; }
+    .nav-links { gap: 1.5rem; font-size: 0.75rem; }
+    .nav-links a.hide-mobile { display: none; }
+
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-meta { left: 1.5rem; right: 1.5rem; bottom: 2rem; font-size: 0.65rem; }
+    section { padding: 5rem 1.5rem; }
+    .vertigo { padding: 5rem 1.5rem; }
+    .changed { margin: 0 -1.5rem; padding: 6rem 1.5rem; }
+    .changed-inner { padding: 0 1.5rem; }
+    .mission { padding: 6rem 1.5rem; }
+    .projects { padding: 5rem 1.5rem 6rem; }
+    footer { padding: 4rem 1.5rem 2rem; }
+
+    .compare {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .compare-divider {
+      padding: 0;
+      transform: rotate(90deg);
+    }
+
+    .tl-entry {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      padding: 2.5rem 0;
+    }
+    .tl-year { position: static; }
+
+    .project-grid { grid-template-columns: 1fr; }
+    .project { border-right: none !important; padding: 2rem 1.5rem 2.5rem; }
+
+    .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-contact { text-align: left; }
+
+    .pull { padding: 0 1.5rem; margin: 3rem 0; }
+    .mission .test { padding: 2rem 1.5rem; }
+  }
+
+  /* Selection */
+  ::selection { background: var(--accent); color: var(--paper); }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="brand">ambient<span class="dot">.</span>technology</div>
+  <div class="nav-links">
+    <a href="#story" class="hide-mobile">Story</a>
+    <a href="#work">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Est. 2022 · Fort Collins, Colorado</div>
+    <h1 class="hero-title">
+      Technology at its best <em>fades into the background</em> and quietly makes something better.
+    </h1>
+    <p class="hero-sub">
+      Ambient is a small studio building software that's useful, honest, and — whenever possible — quiet. A forty-year pattern of noticing when tools recede, continued with the tools of this moment.
+    </p>
+    <div class="hero-meta">
+      <span>№ 001 — Landing</span>
+      <div class="scroll-cue">
+        <span>Scroll</span>
+        <div class="line"></div>
+      </div>
+      <span>Dave Armitage, founder</span>
+    </div>
+  </section>
+
+  <!-- VERTIGO -->
+  <section id="story" class="vertigo">
+    <div class="section-label reveal">A note on the name</div>
+    <p class="vertigo-intro reveal">
+      In 1996, I sold my first software company — <em>GeoGraphix</em>, one of the first 2D and eventually 3D geographic information systems. By the time Halliburton acquired us, we held over 90% market share. The product represented something like 150 person-years of engineering.
+    </p>
+
+    <div class="compare">
+      <div class="compare-col then reveal">
+        <div class="compare-label">Then · 1996</div>
+        <div class="compare-big">150</div>
+        <div class="compare-unit">person-years of engineering</div>
+        <div class="compare-detail">Rooms full of brilliant people. Months to get anything working. Years to reach an MVP.</div>
+      </div>
+      <div class="compare-divider reveal">→</div>
+      <div class="compare-col now reveal">
+        <div class="compare-label">Now · 2026</div>
+        <div class="compare-big">6</div>
+        <div class="compare-unit">weeks, one developer</div>
+        <div class="compare-detail">With today's AI-assisted tools, I'm confident the entire GeoGraphix codebase could be rebuilt — and surpassed — by one person in six weeks.</div>
+      </div>
+    </div>
+
+    <p class="vertigo-outro reveal">
+      That is not a boast. It's vertigo. It's the thing I can't stop thinking about.
+    </p>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="work">
+    <div class="timeline-intro reveal">
+      <div class="section-label">Four companies, one instinct</div>
+      <h2>After GeoGraphix, I kept chasing a particular kind of idea — the kind where the technology is quietly present, doing useful work, without demanding your attention.</h2>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-entry reveal">
+        <div class="tl-year">1984 — 1996</div>
+        <div class="tl-body">
+          <h3 class="tl-name">GeoGraphix</h3>
+          <p class="tl-thesis">The first company. One of the first 2D and eventually 3D geographic information systems.</p>
+          <p class="tl-story">
+            Built over roughly a decade for the oil and gas industry. Acquired by Halliburton in 1996. Still operating today, nearly three decades later — which is either a compliment to the team that built it or an indictment of how long software lives. Probably both.
+          </p>
+          <div class="tl-outcome">
+            <span>Market position<strong>90%+ share</strong></span>
+            <span>Outcome<strong>Acquired by Halliburton</strong></span>
+            <span>Status<strong>Still operating</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry reveal">
+        <div class="tl-year">1996 — 2001</div>
+        <div class="tl-body">
+          <h3 class="tl-name">Qubit</h3>
+          <p class="tl-thesis">A wireless internet tablet, a decade before the iPad was a thing.</p>
+          <p class="tl-story">
+            I believed we'd one day have computers in our homes that were always on, always connected, required no expertise, and put the internet in our hands in a form factor the size of a book. We patented around fifteen of the inventions needed to make it real. In 2001 we won <em>Product of the Year at CES</em>. Then the dot-com bust arrived, and Qubit didn't survive it. The idea, of course, did.
+          </p>
+          <div class="tl-outcome">
+            <span>Recognition<strong>CES Product of the Year, 2001</strong></span>
+            <span>Patents<strong>~15 foundational inventions</strong></span>
+            <span>Outcome<strong>Did not survive dot-com bust</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry reveal">
+        <div class="tl-year">2002 — 2017</div>
+        <div class="tl-body">
+          <h3 class="tl-name">Cartasite</h3>
+          <p class="tl-thesis">Real-time wireless data merged with GPS. Eventually, a way to predict crashes before they happened.</p>
+          <p class="tl-story">
+            In 2007 a customer with 5,000 vehicles asked a harder question: could we predict which drivers were most likely to crash, <em>before</em> they crashed? Working with the City and County of Denver, we proved that accelerometers, gyros, and a good algorithm could read the subtle signatures of risk. The result was ROVR — a small device that plugged into a vehicle's OBD port. The mayor of Denver showcased it at the 2008 DNC. By the time we were acquired by GeoForce in 2017, we'd deployed in 31 countries.
+          </p>
+          <div class="tl-outcome">
+            <span>Countries deployed<strong>31</strong></span>
+            <span>Crash reduction<strong>Over 60% in O&amp;G</strong></span>
+            <span>Outcome<strong>Acquired by GeoForce, 2017</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-entry reveal">
+        <div class="tl-year">2017 — 2020</div>
+        <div class="tl-body">
+          <h3 class="tl-name">Project Canary</h3>
+          <p class="tl-thesis">Real-time fugitive gas emissions monitoring, disguised as bluebird houses.</p>
+          <p class="tl-story">
+            Methane is a brutal greenhouse gas, and natural gas wells leak it. The insight that made Canary possible was small but decisive: methane is hard to detect at ground level because it's lighter than air — but the volatile organic compounds that travel with it are heavier than air, and settle where sensors can find them. We built solar-powered monitoring devices — disguised, with some affection, as bluebird houses — that sampled the air every few minutes. Within months of launch we were monitoring wells representing more than 10% of U.S. natural gas production. I retired from Canary in 2020. It's still operating.
+          </p>
+          <div class="tl-outcome">
+            <span>Coverage at launch<strong>10%+ of U.S. natural gas</strong></span>
+            <span>Form factor<strong>Solar-powered bluebird houses</strong></span>
+            <span>Status<strong>Still operating</strong></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="tl-pattern reveal">
+      Four companies. One recurring instinct: technology is at its best when it fades into the background and <span class="accent">quietly makes something better.</span>
+    </p>
+  </section>
+
+  <!-- WHAT CHANGED -->
+  <section class="changed">
+    <div class="changed-inner">
+      <div class="section-label reveal">What changed</div>
+      <h2 class="reveal">Shortly after ChatGPT arrived in November 2022, I started <em>Ambient Technology</em>.</h2>
+      <p class="lead reveal">
+        I've lived through enough technology cycles to be skeptical of hype, and I've been wrong about plenty of them. But this one is different in a way that's hard to overstate.
+      </p>
+      <p class="reveal">
+        Watching a single person, in an afternoon, build something that would have taken my GeoGraphix team a quarter — that's not an incremental shift. That's a change in what's possible for any one of us to attempt.
+      </p>
+
+      <blockquote class="pull reveal">
+        The cost of <em>trying</em> has collapsed.
+      </blockquote>
+
+      <p class="reveal">
+        Ideas that were too small to justify a team are now worth building. Ideas that were too ambitious for a solo developer are now within reach. The filter on what gets made has moved from <em>"can we afford to build this?"</em> to <em>"is this worth making?"</em>
+      </p>
+      <p class="reveal">
+        That's a better question. I'd like to spend the rest of my working life answering it.
+      </p>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission">
+    <div class="section-label reveal" style="justify-content: center;">What Ambient is</div>
+    <h2 class="reveal">A small studio building software that's <em>useful, honest, and quiet.</em></h2>
+    <p class="reveal">
+      Some of what we make is for sale. Some is free. Some exists because it should exist and I had an afternoon. The through-line is simple.
+    </p>
+    <div class="test reveal">
+      <div class="test-label">The test, in full</div>
+      Does it make someone's day a little better, or the world a little better, without asking for too much in return?
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects">
+    <div class="projects-head reveal">
+      <h2>What we're building, right now.</h2>
+      <a href="/projects" class="projects-link">See all projects →</a>
+    </div>
+
+    <div class="project-grid">
+      <a class="project reveal" href="#">
+        <div class="project-num">№ 001</div>
+        <h3 class="project-name">CourseMagic</h3>
+        <p class="project-desc">A Notion-native, AI-assisted course creation platform. Turn an outline and a voice into a finished course without leaving the tool you already think in.</p>
+        <div class="project-meta">
+          <span>Web · AI · Notion</span>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="project reveal" href="#">
+        <div class="project-num">№ 002</div>
+        <h3 class="project-name">TerraTales</h3>
+        <p class="project-desc">A map-based storytelling app for iOS. Vintage cartographic aesthetics, modern AI voices — place-based stories that find you when you're near them.</p>
+        <div class="project-meta">
+          <span>iOS · Mapbox · AI</span>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="project reveal" href="#">
+        <div class="project-num">№ 003</div>
+        <h3 class="project-name">RecipeWorks</h3>
+        <p class="project-desc">An AI-assisted recipe organizer for iOS. Import from anywhere, cook from anywhere, finally stop losing recipes to screenshots.</p>
+        <div class="project-meta">
+          <span>iOS · Capacitor · AI</span>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+
+      <a class="project reveal" href="#">
+        <div class="project-num">№ 004</div>
+        <h3 class="project-name">Care for the Kid</h3>
+        <p class="project-desc">An online mental health course for children navigating divorce. Built with care, because some software should exist whether or not it makes money.</p>
+        <div class="project-meta">
+          <span>Web · Course · Nonprofit-adjacent</span>
+          <span class="project-arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="projects-more reveal">
+      …and so much more in the works. <a href="/projects">See everything we're building →</a>
+    </p>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div class="footer-msg">
+      The most transformative technologies of my lifetime have been the ones that <em>disappeared into everyday life</em>. That's the standard we're working toward.
+    </div>
+    <div class="footer-contact">
+      <div class="footer-contact-label">Say hello</div>
+      <a href="mailto:hello@ambient.technology">hello@ambient.technology</a>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>© 2026 Ambient Technology</span>
+    <span>Fort Collins, Colorado</span>
+    <span>Built quietly.</span>
+  </div>
+</footer>
+
+<script>
+  // Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
