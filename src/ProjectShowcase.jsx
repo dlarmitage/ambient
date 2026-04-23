@@ -9,7 +9,7 @@ const ProjectShowcase = () => {
     const [projects, setProjects] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
-    const [sortMode, setSortMode] = React.useState('name');
+    const [sortMode, setSortMode] = React.useState('updated');
     const [contactOpen, setContactOpen] = useState(false);
 
     const openContact = (e) => {
