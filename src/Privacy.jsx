@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Privacy.css";
+import Seo from "./Seo";
 
 const Privacy = () => (
   <main className="privacy-wrapper">
+    <Seo
+      title="Privacy Policy · Ambient Technology"
+      description="How Ambient Technology collects, uses, and protects data across our apps. We never sell your data, never track you across the web, and never use your data to train AI models."
+      path="/privacy"
+    />
     <section className="privacy-content">
       <nav className="privacy-breadcrumb">
         <Link to="/" className="privacy-home-link">Home</Link>

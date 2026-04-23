@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Disclosures.css";
+import Seo from "./Seo";
 
 const Disclosures = () => {
   useEffect(() => {
@@ -21,6 +22,11 @@ const Disclosures = () => {
 
   return (
     <main className="disclosures-wrapper">
+      <Seo
+        title="Disclosures · Ambient Technology"
+        description="Disclosures from Ambient Technology."
+        path="/disclosures"
+      />
       <section className="disclosures-content">
         <nav className="disclosures-breadcrumb">
           <Link to="/" className="disclosures-home-link">Home</Link>

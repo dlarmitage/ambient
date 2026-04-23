@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Terms.css";
+import Seo from "./Seo";
 
 const Terms = () => (
   <main className="terms-wrapper">
+    <Seo
+      title="Terms of Use · Ambient Technology"
+      description="The terms that govern use of Ambient Technology's web, iOS, and macOS apps, including acceptable use, intellectual property, subscriptions, and liability."
+      path="/terms"
+    />
     <section className="terms-content">
       <nav className="terms-breadcrumb">
         <Link to="/" className="terms-home-link">Home</Link>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./App.css";
 import ContactModal from "./ContactModal";
+import Seo from "./Seo";
 
 const App = () => {
   const [contactOpen, setContactOpen] = useState(false);
@@ -41,6 +42,11 @@ const App = () => {
 
   return (
     <div className="ambient-landing">
+      <Seo
+        title="Ambient Technology ... Useful, engaging, sometimes magical software."
+        description="Ambient Technology is a small studio in Fort Collins, Colorado, founded by Dave Armitage, building software that's useful, engaging, and sometimes magical. A forty-year journey of noticing when tools recede, emerge, and transform."
+        path="/"
+      />
       <nav id="nav">
         <div className="brand">
           ambient<span className="dot">.</span>technology

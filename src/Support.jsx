@@ -1,9 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Support.css";
+import Seo from "./Seo";
 
 const Support = () => (
   <main className="support-wrapper">
+    <Seo
+      title="Support · Ambient Technology"
+      description="Questions, feedback, ideas, or bug reports ... reach out to Ambient Technology directly. Every message is read by a real person, not a ticket queue."
+      path="/support"
+    />
     <section className="support-content">
       <nav className="support-breadcrumb">
         <Link to="/" className="support-home-link">Home</Link>

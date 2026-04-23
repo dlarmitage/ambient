@@ -4,6 +4,7 @@ import "./ProjectShowcase.css";
 import Footer from "./Footer";
 import ProjectCard from "./components/ProjectCard";
 import ContactModal from "./ContactModal";
+import Seo from "./Seo";
 
 const ProjectShowcase = () => {
     const [projects, setProjects] = React.useState([]);
@@ -80,6 +81,11 @@ const ProjectShowcase = () => {
 
     return (
         <div className="showcase-wrapper">
+            <Seo
+                title="Projects · Ambient Technology"
+                description="Every project Ambient Technology is building right now ... live work and side explorations. Some are for sale, some are free, and some exist only because they should."
+                path="/projects"
+            />
             <nav id="showcase-nav">
                 <div className="brand-group">
                     <Link to="/" className="brand">
