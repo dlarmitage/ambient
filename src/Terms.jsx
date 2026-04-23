@@ -106,8 +106,8 @@ const Terms = () => (
       <div className="terms-section">
         <h2>Intellectual Property</h2>
         <p>
-          All rights, title, and interest in our Services — including but not limited to
-          software, design, logos, and documentation — are and remain the property of Ambient
+          All rights, title, and interest in our Services ... including but not limited to
+          software, design, logos, and documentation ... are and remain the property of Ambient
           Technology. These Terms do not grant you any rights to use our trademarks, branding,
           or logos without prior written consent.
         </p>

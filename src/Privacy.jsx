@@ -17,7 +17,7 @@ const Privacy = () => (
       </p>
 
       <p className="privacy-intro">
-        Your privacy isn't a footnote — it's foundational to everything we build. This policy
+        Your privacy isn't a footnote ... it's foundational to everything we build. This policy
         applies to all applications and services created and operated by Ambient Technology,
         including our web apps, iOS apps, and macOS apps. We want you to understand exactly what
         we collect, why, and what we'll never do.
@@ -28,7 +28,7 @@ const Privacy = () => (
         <p>
           Ambient Technology builds software designed to be useful, thoughtful, and respectful
           of the people who use it. When we say "we," "us," or "our" in this policy, we mean
-          Ambient Technology. When we say "you," we mean you — the person using any of our apps
+          Ambient Technology. When we say "you," we mean you ... the person using any of our apps
           or visiting our websites.
         </p>
       </div>
@@ -41,16 +41,16 @@ const Privacy = () => (
         </p>
         <ul>
           <li>
-            <strong>Account information</strong> — If an app requires sign-in, we collect the
+            <strong>Account information</strong> ... If an app requires sign-in, we collect the
             email address you provide. We use this solely for authentication and to communicate
             with you about your account.
           </li>
           <li>
-            <strong>App data</strong> — Content you create, preferences you set, and actions you
+            <strong>App data</strong> ... Content you create, preferences you set, and actions you
             take within our apps. This data belongs to you and exists to power your experience.
           </li>
           <li>
-            <strong>Device and usage information</strong> — Basic technical details like device
+            <strong>Device and usage information</strong> ... Basic technical details like device
             type, operating system version, and app version to help us fix bugs and ensure
             compatibility. We do not collect device identifiers for tracking purposes.
           </li>
@@ -75,15 +75,15 @@ const Privacy = () => (
         <p>Your data is used for one purpose: to deliver and improve the app you're using.</p>
         <ul>
           <li>
-            <strong>To provide our services</strong> — Storing your content, syncing across
+            <strong>To provide our services</strong> ... Storing your content, syncing across
             devices, and keeping your preferences.
           </li>
           <li>
-            <strong>To improve reliability</strong> — Understanding crash reports and
+            <strong>To improve reliability</strong> ... Understanding crash reports and
             performance issues so we can fix them.
           </li>
           <li>
-            <strong>To communicate with you</strong> — Responding to support requests or
+            <strong>To communicate with you</strong> ... Responding to support requests or
             notifying you about important changes to our services. We don't send marketing emails.
           </li>
         </ul>
@@ -92,7 +92,7 @@ const Privacy = () => (
       <div className="privacy-section">
         <h2>Third-Party Services</h2>
         <p>
-          Some of our apps may use third-party services for essential functionality — such as
+          Some of our apps may use third-party services for essential functionality ... such as
           cloud hosting, authentication, or payment processing. We choose these partners
           carefully and only share the minimum data required for them to function. We do not
           use any third-party analytics, advertising, or tracking services.
@@ -120,7 +120,7 @@ const Privacy = () => (
         <p>
           To exercise any of these rights, email us at{" "}
           <a href="mailto:privacy@ambient.technology">privacy@ambient.technology</a>. We'll
-          respond within a few days — no forms, no runaround.
+          respond within a few days ... no forms, no runaround.
         </p>
       </div>
 
@@ -138,7 +138,7 @@ const Privacy = () => (
         <p>
           If we make meaningful changes to this policy, we'll update the effective date at the
           top and, where appropriate, notify you within the affected app. We won't quietly
-          reduce your protections — transparency matters to us.
+          reduce your protections ... transparency matters to us.
         </p>
       </div>
 

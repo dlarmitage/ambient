@@ -14,7 +14,7 @@ const Support = () => (
       <h1>We're Here for You</h1>
 
       <p className="support-intro">
-        At Ambient Technology, you're never just a user — you're part of what we're building.
+        At Ambient Technology, you're never just a user ... you're part of what we're building.
         Whether you have a question, an idea, a concern, or just want to say hello, we genuinely
         want to hear from you.
       </p>
@@ -31,7 +31,7 @@ const Support = () => (
           <p>
             Drop us a line at{" "}
             <a href="mailto:support@ambient.technology">support@ambient.technology</a>.
-            We read every message personally and do our best to respond as quickly as we can —
+            We read every message personally and do our best to respond as quickly as we can ...
             often the same day.
           </p>
         </div>
@@ -40,19 +40,19 @@ const Support = () => (
       <h2>What You Can Write to Us About</h2>
       <ul className="support-list">
         <li>
-          <strong>Questions</strong> — No question is too small. If something isn't clear or you're
+          <strong>Questions</strong> ... No question is too small. If something isn't clear or you're
           wondering how something works, ask away.
         </li>
         <li>
-          <strong>Feedback &amp; Ideas</strong> — Your perspective shapes what we build next. Tell us what's
+          <strong>Feedback &amp; Ideas</strong> ... Your perspective shapes what we build next. Tell us what's
           working, what could be better, or what you wish existed.
         </li>
         <li>
-          <strong>Bug Reports</strong> — If something isn't working the way it should, let us know.
+          <strong>Bug Reports</strong> ... If something isn't working the way it should, let us know.
           Every report helps us make things better for everyone.
         </li>
         <li>
-          <strong>Just Saying Hi</strong> — Seriously. We love hearing from the people who use what
+          <strong>Just Saying Hi</strong> ... Seriously. We love hearing from the people who use what
           we make. It means more than you know.
         </li>
       </ul>
@@ -61,7 +61,7 @@ const Support = () => (
         <h2>Our Promise to You</h2>
         <p>
           We believe great software starts with genuine human connection. When you reach out, a
-          real person reads your message — not a bot, not a ticket queue. We care deeply about your
+          real person reads your message ... not a bot, not a ticket queue. We care deeply about your
           experience, and we're committed to being responsive, thoughtful, and honest in every
           interaction.
         </p>

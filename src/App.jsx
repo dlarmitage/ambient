@@ -59,10 +59,10 @@ const App = () => {
             Technology at its best <em>fades into the background</em> and quietly makes something better.
           </h1>
           <p className="hero-sub">
-            Ambient is a small studio building software that's useful, honest, and — whenever possible — quiet. A forty-year pattern of noticing when tools recede, continued with the tools of this moment.
+            Ambient is a small studio building software that's useful, honest, and ... whenever possible ... quiet. A forty-year pattern of noticing when tools recede, continued with the tools of this moment.
           </p>
           <div className="hero-meta">
-            <span>№ 001 — Landing</span>
+            <span>№ 001 ... Landing</span>
             <div className="scroll-cue">
               <span>Scroll</span>
               <div className="line"></div>
@@ -74,7 +74,7 @@ const App = () => {
         <section id="story" className="vertigo">
           <div className="section-label reveal">A note on the name</div>
           <p className="vertigo-intro reveal">
-            In 1996, I sold my first software company — <em>GeoGraphix</em>, one of the first 2D and eventually 3D geographic information systems. By the time Halliburton acquired us, we held over 90% market share. The product represented something like 150 person-years of engineering.
+            In 1996, I sold my first software company ... <em>GeoGraphix</em>, one of the first 2D and eventually 3D geographic information systems. By the time Halliburton acquired us, we held over 90% market share. The product represented something like 150 person-years of engineering.
           </p>
 
           <div className="compare">
@@ -89,7 +89,7 @@ const App = () => {
               <div className="compare-label">Now · 2026</div>
               <div className="compare-big">6</div>
               <div className="compare-unit">weeks, one developer</div>
-              <div className="compare-detail">With today's AI-assisted tools, I'm confident the entire GeoGraphix codebase could be rebuilt — and surpassed — by one person in six weeks.</div>
+              <div className="compare-detail">With today's AI-assisted tools, I'm confident the entire GeoGraphix codebase could be rebuilt ... and surpassed ... by one person in six weeks.</div>
             </div>
           </div>
 
@@ -101,17 +101,17 @@ const App = () => {
         <section>
           <div className="timeline-intro reveal">
             <div className="section-label">Four companies, one instinct</div>
-            <h2>After GeoGraphix, I kept chasing a particular kind of idea — the kind where the technology is quietly present, doing useful work, without demanding your attention.</h2>
+            <h2>After GeoGraphix, I kept chasing a particular kind of idea ... the kind where the technology is quietly present, doing useful work, without demanding your attention.</h2>
           </div>
 
           <div className="timeline">
             <div className="tl-entry reveal">
-              <div className="tl-year">1984 — 1996</div>
+              <div className="tl-year">1984 ... 1996</div>
               <div className="tl-body">
                 <h3 className="tl-name">GeoGraphix</h3>
                 <p className="tl-thesis">The first company. One of the first 2D and eventually 3D geographic information systems.</p>
                 <p className="tl-story">
-                  Built over roughly a decade for the oil and gas industry. Acquired by Halliburton in 1996. Still operating today, nearly three decades later — which is either a compliment to the team that built it or an indictment of how long software lives. Probably both.
+                  Built over roughly a decade for the oil and gas industry. Acquired by Halliburton in 1996. Still operating today, nearly three decades later ... which is either a compliment to the team that built it or an indictment of how long software lives. Probably both.
                 </p>
                 <div className="tl-outcome">
                   <span>Market position<strong>90%+ share</strong></span>
@@ -122,7 +122,7 @@ const App = () => {
             </div>
 
             <div className="tl-entry reveal">
-              <div className="tl-year">1996 — 2001</div>
+              <div className="tl-year">1996 ... 2001</div>
               <div className="tl-body">
                 <h3 className="tl-name">Qubit</h3>
                 <p className="tl-thesis">A wireless internet tablet, a decade before the iPad was a thing.</p>
@@ -138,12 +138,12 @@ const App = () => {
             </div>
 
             <div className="tl-entry reveal">
-              <div className="tl-year">2002 — 2017</div>
+              <div className="tl-year">2002 ... 2017</div>
               <div className="tl-body">
                 <h3 className="tl-name">Cartasite</h3>
                 <p className="tl-thesis">Real-time wireless data merged with GPS. Eventually, a way to predict crashes before they happened.</p>
                 <p className="tl-story">
-                  In 2007 a customer with 5,000 vehicles asked a harder question: could we predict which drivers were most likely to crash, <em>before</em> they crashed? Working with the City and County of Denver, we proved that accelerometers, gyros, and a good algorithm could read the subtle signatures of risk. The result was ROVR — a small device that plugged into a vehicle's OBD port. The mayor of Denver showcased it at the 2008 DNC. By the time we were acquired by GeoForce in 2017, we'd deployed in 31 countries.
+                  In 2007 a customer with 5,000 vehicles asked a harder question: could we predict which drivers were most likely to crash, <em>before</em> they crashed? Working with the City and County of Denver, we proved that accelerometers, gyros, and a good algorithm could read the subtle signatures of risk. The result was ROVR ... a small device that plugged into a vehicle's OBD port. The mayor of Denver showcased it at the 2008 DNC. By the time we were acquired by GeoForce in 2017, we'd deployed in 31 countries.
                 </p>
                 <div className="tl-outcome">
                   <span>Countries deployed<strong>31</strong></span>
@@ -154,12 +154,12 @@ const App = () => {
             </div>
 
             <div className="tl-entry reveal">
-              <div className="tl-year">2017 — 2020</div>
+              <div className="tl-year">2017 ... 2020</div>
               <div className="tl-body">
                 <h3 className="tl-name">Project Canary</h3>
                 <p className="tl-thesis">Real-time fugitive gas emissions monitoring, disguised as bluebird houses.</p>
                 <p className="tl-story">
-                  Methane is a brutal greenhouse gas, and natural gas wells leak it. The insight that made Canary possible was small but decisive: methane is hard to detect at ground level because it's lighter than air — but the volatile organic compounds that travel with it are heavier than air, and settle where sensors can find them. We built solar-powered monitoring devices — disguised, with some affection, as bluebird houses — that sampled the air every few minutes. Within months of launch we were monitoring wells representing more than 10% of U.S. natural gas production. I retired from Canary in 2020. It's still operating.
+                  Methane is a brutal greenhouse gas, and natural gas wells leak it. The insight that made Canary possible was small but decisive: methane is hard to detect at ground level because it's lighter than air ... but the volatile organic compounds that travel with it are heavier than air, and settle where sensors can find them. We built solar-powered monitoring devices ... disguised, with some affection, as bluebird houses ... that sampled the air every few minutes. Within months of launch we were monitoring wells representing more than 10% of U.S. natural gas production. I retired from Canary in 2020. It's still operating.
                 </p>
                 <div className="tl-outcome">
                   <span>Coverage at launch<strong>10%+ of U.S. natural gas</strong></span>
@@ -183,7 +183,7 @@ const App = () => {
               I've lived through enough technology cycles to be skeptical of hype, and I've been wrong about plenty of them. But this one is different in a way that's hard to overstate.
             </p>
             <p className="reveal">
-              Watching a single person, in an afternoon, build something that would have taken my GeoGraphix team a quarter — that's not an incremental shift. That's a change in what's possible for any one of us to attempt.
+              Watching a single person, in an afternoon, build something that would have taken my GeoGraphix team a quarter ... that's not an incremental shift. That's a change in what's possible for any one of us to attempt.
             </p>
 
             <blockquote className="pull reveal">
@@ -231,7 +231,7 @@ const App = () => {
             <a className="project reveal" href="#">
               <div className="project-num">№ 002</div>
               <h3 className="project-name">TerraTales</h3>
-              <p className="project-desc">A map-based storytelling app for iOS. Vintage cartographic aesthetics, modern AI voices — place-based stories that find you when you're near them.</p>
+              <p className="project-desc">A map-based storytelling app for iOS. Vintage cartographic aesthetics, modern AI voices ... place-based stories that find you when you're near them.</p>
               <div className="project-meta">
                 <span>iOS · Mapbox · AI</span>
                 <span className="project-arrow">→</span>
