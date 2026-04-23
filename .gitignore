@@ -3,6 +3,7 @@
 
 # production
 /build
+/public/projects.json
 
 # misc
 .DS_Store

@@ -30,6 +30,7 @@
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server.js",
     "client": "react-scripts start",
+    "prebuild": "node scripts/export-projects.js",
     "build": "react-scripts build",
     "postbuild": "react-snap",
     "test": "react-scripts test",

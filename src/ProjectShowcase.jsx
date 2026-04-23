@@ -18,20 +18,40 @@ const ProjectShowcase = () => {
     };
 
     React.useEffect(() => {
-        fetch('/api/apps')
-            .then(res => {
-                if (!res.ok) throw new Error('Network response was not ok');
-                return res.json();
-            })
+        let cancelled = false;
+
+        const loadFromSnapshot = fetch('/projects.json')
+            .then(res => res.ok ? res.json() : null)
+            .catch(() => null)
             .then(data => {
+                if (cancelled || !Array.isArray(data)) return;
                 setProjects(data);
                 setLoading(false);
-            })
-            .catch(err => {
-                console.error("Failed to fetch apps:", err);
-                setError("Failed to load apps. Please ensure the backend server is running.");
-                setLoading(false);
             });
+
+        loadFromSnapshot.finally(() => {
+            fetch('/api/apps')
+                .then(res => {
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    return res.json();
+                })
+                .then(data => {
+                    if (cancelled) return;
+                    setProjects(data);
+                    setLoading(false);
+                })
+                .catch(err => {
+                    if (cancelled) return;
+                    console.error("Failed to fetch apps:", err);
+                    setLoading(prev => {
+                        if (!prev) return prev;
+                        setError("Failed to load apps. Please ensure the backend server is running.");
+                        return false;
+                    });
+                });
+        });
+
+        return () => { cancelled = true; };
     }, []);
 
     useEffect(() => {
